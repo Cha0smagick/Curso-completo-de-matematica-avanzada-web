@@ -874,7 +874,13 @@ class App {
     
     try {
       // Dynamic import del módulo de vista
-      const viewModule = await import(`../modules/${viewName}/index.js`);
+      // Use import.meta.glob for dynamic module loading
+    const modules = import.meta.glob('../../../modules/*/index.js');
+    const modulePath = `../../../modules/${viewName}/index.js`;
+    if (!modules[modulePath]) {
+      throw new Error(`Módulo ${viewName} no encontrado`);
+    }
+    const viewModule = await modules[modulePath]();
       
       if (viewModule.default && typeof viewModule.default.render === 'function') {
         await viewModule.default.render(main, params, { store, router, eventBus, curriculum: curriculumData });
