@@ -7,6 +7,13 @@ import { store } from './store.js';
 import { router } from './router.js';
 import { eventBus, EventTypes } from './events.js';
 import importedCurriculum from '../../data/curriculum.json';
+import '../../css/variables.css';
+import '../../css/reset.css';
+import '../../css/layout.css';
+import '../../css/components.css';
+import '../../css/course.css';
+import '../../css/animations.css';
+import '../../css/print.css';
 
 /* ==========================================================================
    CURRICULUM DATA (cargado desde JSON en build time)
