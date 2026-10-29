@@ -1,53 +1,7 @@
 import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
 import { glob } from 'glob';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-
-// Disable PWA for now due to Vite 5 compatibility issues
-const pwaPlugin = process.env.ENABLE_PWA ? VitePWA({
-  registerType: 'autoUpdate',
-  includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'robots.txt'],
-  manifest: {
-    name: 'Matemáticas Avanzadas - Curso Completo',
-    short_name: 'MateAvanzada',
-    description: 'Curso profesional completo de matemáticas desde cero hasta nivel universitario avanzado',
-    theme_color: '#0a0f1a',
-    background_color: '#0a0f1a',
-    display: 'standalone',
-    orientation: 'portrait-primary',
-    scope: '/Curso-completo-de-matematica-avanzada/',
-    start_url: '/Curso-completo-de-matematica-avanzada/',
-    icons: [
-      { src: 'assets/images/icon-72.png', sizes: '72x72', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-96.png', sizes: '96x96', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-128.png', sizes: '128x128', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-144.png', sizes: '144x144', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-152.png', sizes: '152x152', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-384.png', sizes: '384x384', type: 'image/png', purpose: 'maskable any' },
-      { src: 'assets/images/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable any' }
-    ],
-    categories: ['education', 'science'],
-    shortcuts: [
-      { name: 'Continuar aprendiendo', short_name: 'Continuar', url: '/Curso-completo-de-matematica-avanzada/#dashboard', description: 'Volver a tu último módulo' },
-      { name: 'Ver progreso', short_name: 'Progreso', url: '/Curso-completo-de-matematica-avanzada/#progress', description: 'Ver tu progreso global y certificados' }
-    ]
-  },
-  workbox: {
-    globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,json,webmanifest}'],
-    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-    runtimeCaching: [
-      { urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i, handler: 'CacheFirst', options: { cacheName: 'google-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }, cacheableResponse: { statuses: [0, 200] } } },
-      { urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i, handler: 'CacheFirst', options: { cacheName: 'gstatic-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }, cacheableResponse: { statuses: [0, 200] } } },
-      { urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/.*/i, handler: 'StaleWhileRevalidate', options: { cacheName: 'jsdelivr-cache', expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 } } }
-    ],
-    cleanupOutdatedCaches: true,
-    skipWaiting: true,
-    clientsClaim: true
-  },
-  devOptions: { enabled: false }
-}) : null;
 
 export default defineConfig({
   root: '.',
@@ -129,7 +83,6 @@ export default defineConfig({
     }
   },
   plugins: [
-    pwaPlugin,
     {
       name: 'html-transform',
       transformIndexHtml(html) {
