@@ -1,0 +1,54 @@
+{
+  "name": "matematicas-avanzadas",
+  "version": "1.0.0",
+  "description": "Curso profesional completo de matemáticas avanzadas - Desde cero hasta nivel universitario",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,html",
+    "format": "prettier --write .",
+    "validate:content": "node scripts/validate-content.js",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "generate:og-images": "node scripts/generate-og-images.js",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "keywords": [
+    "matemáticas",
+    "educación",
+    "curso",
+    "cálculo",
+    "álgebra",
+    "trigonometría",
+    "github-pages"
+  ],
+  "author": "Adeptus Vinictus II",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vite-plugin-pwa": "^0.20.0",
+    "eslint": "^9.9.0",
+    "prettier": "^3.3.0",
+    "vitest": "^2.0.0",
+    "@playwright/test": "^1.47.0",
+    "jsdom": "^25.0.0",
+    "gh-pages": "^6.1.0",
+    "glob": "^11.0.0"
+  },
+  "dependencies": {
+    "katex": "^0.16.10",
+    "chart.js": "^4.4.4",
+    "d3": "^7.9.0",
+    "@floating-ui/dom": "^1.6.10",
+    "idb": "^8.0.0",
+    "jszip": "^3.10.1",
+    "minisearch": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

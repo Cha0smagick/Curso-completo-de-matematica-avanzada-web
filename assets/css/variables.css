@@ -1,0 +1,356 @@
+/* ==========================================================================
+   DESIGN TOKENS - Matemáticas Avanzadas
+   Paleta accesible WCAG AA/AAA, modo oscuro por defecto, claro automático
+   ========================================================================== */
+
+:root {
+  /* ===== COLOR SEMÁNTICO ===== */
+  /* Fondos */
+  --color-bg: #0a0f1a;
+  --color-bg-elevated: #111827;
+  --color-bg-hover: #1e293b;
+  --color-bg-active: #25354a;
+  --color-surface: #1e293b;
+  --color-surface-hover: #25354a;
+
+  /* Bordes */
+  --color-border: #334155;
+  --color-border-hover: #475569;
+  --color-border-focus: #22d3ee;
+  --color-border-error: #ef4444;
+  --color-border-success: #10b981;
+
+  /* Texto */
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-text-inverse: #0a0f1a;
+  --color-text-link: #22d3ee;
+
+  /* Marca - Gradientes principales */
+  --brand-primary: #22d3ee;       /* Cyan brillante */
+  --brand-primary-hover: #06b6d4;
+  --brand-secondary: #a855f7;     /* Purple vibrante */
+  --brand-secondary-hover: #9333ea;
+  --brand-accent: #f59e0b;        /* Amber/oro para logros */
+  --brand-accent-hover: #d97706;
+  --brand-success: #10b981;       /* Emerald */
+  --brand-warning: #f97316;       /* Orange */
+  --brand-error: #ef4444;         /* Red */
+  --brand-info: #3b82f6;          /* Blue */
+
+  /* Gradientes de marca */
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --gradient-primary: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+  --gradient-secondary: linear-gradient(135deg, #a855f7 0%, #f59e0b 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+  --gradient-error: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --gradient-card: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  --gradient-card-hover: linear-gradient(145deg, #25354a 0%, #162034 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(34,211,238,0.15) 0%, transparent 70%);
+  --gradient-glow-purple: radial-gradient(ellipse at center, rgba(168,85,247,0.15) 0%, transparent 70%);
+  --gradient-glow-gold: radial-gradient(ellipse at center, rgba(245,158,11,0.15) 0%, transparent 70%);
+
+  /* Estados interactivos */
+  --color-hover: rgba(34, 211, 238, 0.1);
+  --color-active: rgba(34, 211, 238, 0.2);
+  --color-focus: rgba(34, 211, 238, 0.3);
+  --color-selected: rgba(34, 211, 238, 0.15);
+
+  /* ===== TIPOGRAFÍA ===== */
+  --font-sans: 'Inter', 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  --font-display: 'Cal Sans', 'Inter', system-ui, sans-serif;
+  --font-math: 'KaTeX_Main', 'STIX Two Math', 'Latin Modern Math', serif;
+
+  /* Escala tipográfica fluida (clamp) */
+  --text-2xs: clamp(0.6rem, 0.55rem + 0.25vw, 0.65rem);
+  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);
+  --text-base: clamp(0.95rem, 0.9rem + 0.25vw, 1rem);
+  --text-lg: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.3rem, 1.15rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.6rem, 1.35rem + 1.25vw, 2rem);
+  --text-3xl: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-4xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  --text-5xl: clamp(3rem, 2.5rem + 3vw, 5rem);
+
+  /* Pesos */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Interlineado */
+  --leading-tight: 1.1;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+
+  /* ===== ESPACIADO (base 4px) ===== */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
+  --space-2: 0.5rem;
+  --space-2-5: 0.625rem;
+  --space-3: 0.75rem;
+  --space-3-5: 0.875rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
+
+  /* ===== BORDES Y RADIOS ===== */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+  --radius-full: 9999px;
+
+  /* ===== SOMBRAS ===== */
+  --shadow-xs: 0 1px 1px 0 rgb(0 0 0 / 0.2);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.2);
+  --shadow-glow: 0 0 20px rgb(34 211 238 / 0.3), 0 0 40px rgb(168 85 247 / 0.15);
+  --shadow-glow-lg: 0 0 30px rgb(34 211 238 / 0.4), 0 0 60px rgb(168 85 247 / 0.2);
+  --shadow-focus: 0 0 0 3px rgb(34 211 238 / 0.4);
+
+  /* ===== TRANSICIONES ===== */
+  --transition-instant: 50ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-spring: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ===== Z-INDEX SCALE ===== */
+  --z-negative: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  --z-toast: 800;
+  --z-maximum: 9999;
+
+  /* ===== BREAKPOINTS (para referencia en JS) ===== */
+  --bp-xs: 320px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1440px;
+  --bp-3xl: 1920px;
+
+  /* ===== CONTAINER WIDTHS ===== */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+  --container-full: 100%;
+
+  /* ===== COMPONENT SPECIFIC ===== */
+  /* Header */
+  --header-height: 4rem;
+  --header-height-compact: 3.5rem;
+
+  /* Sidebar */
+  --sidebar-width: 16rem;
+  --sidebar-width-collapsed: 4rem;
+  --sidebar-width-mobile: 18rem;
+
+  /* Progress Ring */
+  --progress-ring-size: 80px;
+  --progress-ring-stroke: 6px;
+
+  /* Quiz Card */
+  --quiz-card-max-width: 48rem;
+
+  /* Interactive Graph */
+  --graph-min-height: 300px;
+  --graph-ideal-height: 400px;
+
+  /* Tooltip */
+  --tooltip-max-width: 280px;
+  --tooltip-gap: 8px;
+
+  /* Certificate */
+  --certificate-width: 210mm;
+  --certificate-height: 297mm; /* A4 */
+
+  /* ===== MATH SPECIFIC ===== */
+  --math-font-size: 1em;
+  --math-color: var(--color-text);
+  --math-color-muted: var(--color-text-muted);
+  --math-error-color: var(--brand-error);
+  --katex-display-size: 1.2em;
+
+  /* ===== ANIMATION DURATIONS ===== */
+  --anim-duration-fast: 150ms;
+  --anim-duration-normal: 250ms;
+  --anim-duration-slow: 350ms;
+  --anim-duration-page: 400ms;
+}
+
+/* ==========================================================================
+   MODO CLARO (prefers-color-scheme: light)
+   ========================================================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f8fafc;
+    --color-bg-elevated: #ffffff;
+    --color-bg-hover: #f1f5f9;
+    --color-bg-active: #e2e8f0;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f8fafc;
+
+    --color-border: #e2e8f0;
+    --color-border-hover: #cbd5e1;
+    --color-border-focus: #06b6d4;
+
+    --color-text: #0f172a;
+    --color-text-muted: #475569;
+    --color-text-subtle: #94a3b8;
+    --color-text-inverse: #f8fafc;
+    --color-text-link: #06b6d4;
+
+    --brand-primary: #06b6d4;
+    --brand-primary-hover: #0891b2;
+    --brand-secondary: #9333ea;
+    --brand-secondary-hover: #7e22ce;
+    --brand-accent: #d97706;
+    --brand-accent-hover: #b45309;
+
+    --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #ede9fe 50%, #f8fafc 100%);
+    --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    --gradient-card-hover: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    --gradient-glow: radial-gradient(ellipse at center, rgba(6,182,212,0.1) 0%, transparent 70%);
+    --gradient-glow-purple: radial-gradient(ellipse at center, rgba(147,51,234,0.1) 0%, transparent 70%);
+
+    --color-hover: rgba(6, 182, 212, 0.08);
+    --color-active: rgba(6, 182, 212, 0.15);
+    --color-focus: rgba(6, 182, 212, 0.25);
+    --color-selected: rgba(6, 182, 212, 0.12);
+
+    --shadow-xs: 0 1px 1px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+    --shadow-focus: 0 0 0 3px rgb(6 182 212 / 0.3);
+  }
+}
+
+/* ==========================================================================
+   OVERRIDE MANUAL DE TEMA (clase en <html>)
+   ========================================================================== */
+html[data-theme="light"] {
+  --color-bg: #f8fafc;
+  --color-bg-elevated: #ffffff;
+  --color-bg-hover: #f1f5f9;
+  --color-bg-active: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-border-focus: #06b6d4;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-subtle: #94a3b8;
+  --color-text-inverse: #f8fafc;
+  --color-text-link: #06b6d4;
+  --brand-primary: #06b6d4;
+  --brand-secondary: #9333ea;
+  --brand-accent: #d97706;
+  --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #ede9fe 50%, #f8fafc 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-focus: 0 0 0 3px rgb(6 182 212 / 0.3);
+}
+
+html[data-theme="dark"] {
+  --color-bg: #0a0f1a;
+  --color-bg-elevated: #111827;
+  --color-bg-hover: #1e293b;
+  --color-bg-active: #25354a;
+  --color-surface: #1e293b;
+  --color-surface-hover: #25354a;
+  --color-border: #334155;
+  --color-border-hover: #475569;
+  --color-border-focus: #22d3ee;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-text-inverse: #0a0f1a;
+  --color-text-link: #22d3ee;
+  --brand-primary: #22d3ee;
+  --brand-secondary: #a855f7;
+  --brand-accent: #f59e0b;
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --gradient-card: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-focus: 0 0 0 3px rgb(34 211 238 / 0.4);
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-instant: 0ms;
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --transition-slower: 0ms;
+    --transition-bounce: 0ms;
+    --transition-spring: 0ms;
+    --anim-duration-fast: 0ms;
+    --anim-duration-normal: 0ms;
+    --anim-duration-slow: 0ms;
+    --anim-duration-page: 0ms;
+  }
+}
+
+/* ==========================================================================
+   HIGH CONTRAST MODE
+   ========================================================================== */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: currentColor;
+    --color-border-focus: currentColor;
+    --shadow-focus: 0 0 0 3px currentColor;
+  }
+}

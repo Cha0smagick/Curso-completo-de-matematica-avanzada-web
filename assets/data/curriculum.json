@@ -1,0 +1,803 @@
+{
+  "version": "1.0",
+  "title": "Matemáticas Avanzadas - Curso Completo",
+  "description": "Curso profesional completo de matemáticas desde cero hasta nivel universitario avanzado",
+  "estimatedTotalHours": 120,
+  "phases": [
+    {
+      "id": 0,
+      "title": "Fundamentos Pre-Matemáticos",
+      "description": "Elimina la ansiedad matemática y construye intuición numérica desde cero. Diseñado para quien 'odia' las matemáticas.",
+      "icon": "🌱",
+      "color": "var(--brand-primary)",
+      "estimatedHours": 3,
+      "prerequisites": [],
+      "modules": [
+        {
+          "id": "m01",
+          "title": "¿Qué es un número?",
+          "description": "Conteo, cardinalidad, ordinalidad, subitizing, principio de abstracción",
+          "estimatedMinutes": 30,
+          "difficulty": 1,
+          "tags": ["conteo", "cardinalidad", "subitizing"],
+          "learningObjectives": [
+            "Entender el concepto de número como cantidad y posición",
+            "Practicar correspondencia uno a uno",
+            "Reconocer cantidades pequeñas sin contar (subitizing)"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m02",
+          "title": "Sentido numérico",
+          "description": "Estimación, magnitud, recta numérica, benchmarking mental",
+          "estimatedMinutes": 45,
+          "difficulty": 1,
+          "tags": ["estimación", "magnitud", "recta-numérica"],
+          "learningObjectives": [
+            "Desarrollar intuición sobre magnitud de números",
+            "Ubicar números en la recta numérica",
+            "Estimar resultados de operaciones"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m03",
+          "title": "Operaciones como acciones",
+          "description": "Unir, separar, comparar, repartir - Modelos semánticos de las 4 operaciones",
+          "estimatedMinutes": 45,
+          "difficulty": 1,
+          "tags": ["suma", "resta", "multiplicación", "división", "modelos-semánticos"],
+          "learningObjectives": [
+            "Entender la suma como unión y la resta como separación",
+            "Entender la multiplicación como agrupación y la división como reparto",
+            "Resolver problemas identificando la operación correcta"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m04",
+          "title": "Patrones y regularidades",
+          "description": "Secuencias, periodicidad, simetría, pensamiento algebraico temprano",
+          "estimatedMinutes": 30,
+          "difficulty": 1,
+          "tags": ["patrones", "secuencias", "simetría", "generalización"],
+          "learningObjectives": [
+            "Identificar y extender patrones numéricos y geométricos",
+            "Entender periodicidad y simetría",
+            "Introducción a la generalización (pensamiento algebraico)"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m05",
+          "title": "Lenguaje matemático",
+          "description": "Símbolos, convenciones, precisión, leer matemáticas como idioma",
+          "estimatedMinutes": 30,
+          "difficulty": 1,
+          "tags": ["símbolos", "notación", "convenciones", "lectura-matemática"],
+          "learningObjectives": [
+            "Desmitificar la notación matemática",
+            "Leer y escribir expresiones matemáticas correctamente",
+            "Entender la importancia de la precisión en matemáticas"
+          ],
+          "sections": ["theory", "practice", "quiz"]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Aritmética y Pre-Álgebra",
+      "description": "Domina los números y operaciones fundamentales. Base sólida para todo lo que sigue.",
+      "icon": "🔢",
+      "color": "var(--brand-secondary)",
+      "estimatedHours": 10,
+      "prerequisites": [0],
+      "modules": [
+        {
+          "id": "m06",
+          "title": "Números Naturales",
+          "description": "Propiedades, divisibilidad, mcd/mcm, factorización prima, teorema fundamental de la aritmética",
+          "estimatedMinutes": 60,
+          "difficulty": 2,
+          "tags": ["divisibilidad", "mcd", "mcm", "factorización", "teorema-fundamental"],
+          "learningObjectives": [
+            "Aplicar criterios de divisibilidad",
+            "Calcular mcd y mcm de múltiples formas",
+            "Factorizar números en primos",
+            "Entender el teorema fundamental de la aritmética"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m07",
+          "title": "Enteros",
+          "description": "Recta numérica extendida, valor absoluto, operaciones con signos, potencias enteras",
+          "estimatedMinutes": 60,
+          "difficulty": 2,
+          "tags": ["enteros", "valor-absoluto", "signos", "potencias-enteras"],
+          "learningObjectives": [
+            "Operar con números enteros (suma, resta, multiplicación, división)",
+            "Entender y aplicar valor absoluto",
+            "Calcular potencias con exponentes enteros (incluyendo negativos)"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m08",
+          "title": "Racionales",
+          "description": "Fracciones (modelos: área, recta, conjunto), decimales exactos/periódicos, conversión, porcentaje, razón, proporción",
+          "estimatedMinutes": 90,
+          "difficulty": 3,
+          "tags": ["fracciones", "decimales", "porcentaje", "razón", "proporción"],
+          "learningObjectives": [
+            "Operar con fracciones usando múltiples modelos",
+            "Convertir entre fracciones, decimales y porcentajes",
+            "Resolver problemas de razón y proporción",
+            "Entender decimales exactos y periódicos"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m09",
+          "title": "Reales",
+          "description": "Irracionales (√2, π, e), densidad, intervalos, notación científica, órdenes de magnitud",
+          "estimatedMinutes": 60,
+          "difficulty": 3,
+          "tags": ["irracionales", "densidad", "intervalos", "notación-científica"],
+          "learningObjectives": [
+            "Entender la existencia de números irracionales",
+            "Trabajar con intervalos y notación de intervalos",
+            "Usar notación científica para números muy grandes/pequeños",
+            "Comparar órdenes de magnitud"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m10",
+          "title": "Potenciación y Radicación",
+          "description": "Leyes de exponentes (enteros, racionales), notación radical, racionalización, jerarquía de operaciones",
+          "estimatedMinutes": 60,
+          "difficulty": 3,
+          "tags": ["exponentes", "radicales", "racionalización", "jerarquía-operaciones"],
+          "learningObjectives": [
+            "Aplicar leyes de exponentes con exponentes enteros y racionales",
+            "Simplificar expresiones con radicales",
+            "Racionalizar denominadores",
+            "Aplicar correctamente la jerarquía de operaciones"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m11",
+          "title": "Álgebra Elemental",
+          "description": "Variable, expresión, término, polinomio, operaciones, factorización común, productos notables, ecuaciones lineales",
+          "estimatedMinutes": 90,
+          "difficulty": 3,
+          "tags": ["variable", "polinomio", "factorización", "productos-notables", "ecuaciones-lineales"],
+          "learningObjectives": [
+            "Entender el concepto de variable y expresión algebraica",
+            "Operar con polinomios (suma, resta, multiplicación, división)",
+            "Factorizar usando factor común y productos notables",
+            "Resolver ecuaciones lineales de primer grado"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m12",
+          "title": "Sistemas de Ecuaciones",
+          "description": "2×2, 3×3 (sustitución, igualación, reducción, Cramer, Gauss), interpretación gráfica, problemas de aplicación",
+          "estimatedMinutes": 60,
+          "difficulty": 3,
+          "tags": ["sistemas-ecuaciones", "2x2", "3x3", "métodos", "cramer", "gauss"],
+          "learningObjectives": [
+            "Resolver sistemas 2×2 y 3×3 por múltiples métodos",
+            "Interpretar gráficamente la solución de un sistema",
+            "Aplicar regla de Cramer y método de Gauss",
+            "Modelar y resolver problemas reales con sistemas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m13",
+          "title": "Inecuaciones",
+          "description": "Lineales, cuadráticas, con valor absoluto, sistemas, región factible",
+          "estimatedMinutes": 45,
+          "difficulty": 3,
+          "tags": ["inecuaciones", "lineales", "cuadráticas", "valor-absoluto", "región-factible"],
+          "learningObjectives": [
+            "Resolver inecuaciones lineales y cuadráticas",
+            "Resolver inecuaciones con valor absoluto",
+            "Resolver sistemas de inecuaciones",
+            "Interpretar región factible gráficamente"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Funciones y Álgebra Avanzada",
+      "description": "El concepto central de las matemáticas modernas: funciones. De lo elemental a lo avanzado.",
+      "icon": "📈",
+      "color": "var(--brand-accent)",
+      "estimatedHours": 15,
+      "prerequisites": [1],
+      "modules": [
+        {
+          "id": "m14",
+          "title": "Concepto de Función",
+          "description": "Dominio, codominio, imagen, gráfica, inyectividad, suprayectividad, biyectividad, composición, inversa",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["función", "dominio", "codominio", "inyectiva", "biyectiva", "composición", "inversa"],
+          "learningObjectives": [
+            "Definir función y distinguir de correspondencia",
+            "Determinar dominio, codominio e imagen",
+            "Clasificar funciones: inyectiva, suprayectiva, biyectiva",
+            "Componer funciones y hallar inversas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m15",
+          "title": "Funciones Elementales",
+          "description": "Lineal, cuadrática, polinómica, racional, raíz, valor absoluto, parte entera, signo",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["lineal", "cuadrática", "polinómica", "racional", "raíz", "valor-absoluto", "parte-entera"],
+          "learningObjectives": [
+            "Identificar y graficar funciones elementales",
+            "Analizar características: dominio, recorrido, intersecciones, asíntotas",
+            "Resolver ecuaciones e inecuaciones con estas funciones"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m16",
+          "title": "Transformaciones Gráficas",
+          "description": "Traslaciones, dilataciones, reflexiones, parámetros a,b,h,k en f(x)=a·f(b(x-h))+k",
+          "estimatedMinutes": 60,
+          "difficulty": 4,
+          "tags": ["traslaciones", "dilataciones", "reflexiones", "parámetros", "transformaciones"],
+          "learningObjectives": [
+            "Aplicar transformaciones a gráficas de funciones",
+            "Identificar parámetros a, b, h, k en forma transformada",
+            "Graficar funciones transformadas sin tabla de valores"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m17",
+          "title": "Función Exponencial y Logarítmica",
+          "description": "Definición, propiedades, base e, logaritmo natural, ecuaciones, modelo de crecimiento/decay, interés compuesto",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["exponencial", "logarítmica", "base-e", "ln", "crecimiento", "decaimiento", "interés-compuesto"],
+          "learningObjectives": [
+            "Entender función exponencial y sus propiedades",
+            "Entender logaritmo como inversa de la exponencial",
+            "Resolver ecuaciones exponenciales y logarítmicas",
+            "Modelar crecimiento/decay y calcular interés compuesto"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m18",
+          "title": "Funciones Trigonométricas",
+          "description": "Círculo unitario, sen, cos, tan, cot, sec, csc, identidades fundamentales, gráficas, período, amplitud, fase",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["trigonometría", "círculo-unitario", "seno", "coseno", "tangente", "identidades", "gráficas"],
+          "learningObjectives": [
+            "Definir funciones trigonométricas en el círculo unitario",
+            "Calcular valores para ángulos notables",
+            "Graficar funciones trigonométricas identificando período, amplitud, fase",
+            "Aplicar identidades fundamentales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m19",
+          "title": "Trigonometría Avanzada",
+          "description": "Fórmulas de adición, doble/medio ángulo, suma-producto, ecuaciones trigonométricas, triángulos oblicuángulos (leyes senos/cosenos)",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["fórmulas-adición", "doble-ángulo", "suma-producto", "ecuaciones-trigonométricas", "ley-senos", "ley-cosenos"],
+          "learningObjectives": [
+            "Derivar y aplicar fórmulas de adición y resta",
+            "Usar fórmulas de doble ángulo y medio ángulo",
+            "Transformar suma en producto y viceversa",
+            "Resolver ecuaciones trigonométricas",
+            "Resolver triángulos oblicuángulos con leyes de senos y cosenos"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m20",
+          "title": "Números Complejos",
+          "description": "Forma binómica/polar/exponencial, operaciones, raíz n-ésima, teorema de Moivre, ecuaciones polinómicas, plano de Argand",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["complejos", "binómica", "polar", "exponencial", "moivre", "argand", "raíces-n-ésimas"],
+          "learningObjectives": [
+            "Representar números complejos en forma binómica, polar y exponencial",
+            "Operar con números complejos en todas las formas",
+            "Calcular raíces n-ésimas usando teorema de Moivre",
+            "Resolver ecuaciones polinómicas con raíces complejas",
+            "Interpretar geométricamente en el plano de Argand"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m21",
+          "title": "Polinomios Avanzados",
+          "description": "Teorema del resto, teorema del factor, raíces racionales, regla de Descartes, límites, comportamiento asintótico",
+          "estimatedMinutes": 60,
+          "difficulty": 5,
+          "tags": ["teorema-resto", "teorema-factor", "raíces-racionales", "descartes", "asintóticas"],
+          "learningObjectives": [
+            "Aplicar teoremas del resto y del factor",
+            "Encontrar raíces racionales de polinomios",
+            "Usar regla de Descartes para estimar raíces reales",
+            "Analizar comportamiento asintótico de funciones polinómicas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m22",
+          "title": "Sucesiones y Series",
+          "description": "Aritmética, geométrica, recursivas, límite, convergencia, serie telescopica, serie armónica, criterios de convergencia",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["sucesiones", "series", "aritmética", "geométrica", "convergencia", "telescópica", "criterios"],
+          "learningObjectives": [
+            "Analizar sucesiones aritméticas y geométricas",
+            "Calcular límites de sucesiones",
+            "Determinar convergencia de series",
+            "Aplicar criterios de convergencia (comparación, razón, raíz, integral)",
+            "Calcular sumas de series telescópicas y geométricas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Geometría y Trigonometría Analítica",
+      "description": "Une álgebra y geometría. Visualiza, demuestra y resuelve problemas espaciales.",
+      "icon": "📐",
+      "color": "var(--brand-success)",
+      "estimatedHours": 12,
+      "prerequisites": [2],
+      "modules": [
+        {
+          "id": "m23",
+          "title": "Geometría Euclidiana Plana",
+          "description": "Puntos, rectas, ángulos, triángulos (congruencia, semejanza, centros notables), cuadriláteros, circunferencia, teoremas clásicos",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["euclidiana", "triángulos", "congruencia", "semejanza", "centros-notables", "circunferencia"],
+          "learningObjectives": [
+            "Demostrar congruencia y semejanza de triángulos",
+            "Identificar y construir centros notables del triángulo",
+            "Aplicar teoremas clásicos (Tales, Pitágoras, Ceva, Menelao, Euler)",
+            "Resolver problemas con cuadriláteros y circunferencias"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m24",
+          "title": "Geometría Analítica",
+          "description": "Coordenadas cartesianas, distancia, punto medio, pendiente, ecuaciones de la recta, posición relativa, haz de rectas",
+          "estimatedMinutes": 90,
+          "difficulty": 4,
+          "tags": ["coordenadas", "distancia", "punto-medio", "pendiente", "ecuación-recta", "haz-rectas"],
+          "learningObjectives": [
+            "Calcular distancia entre puntos y punto medio",
+            "Determinar pendiente y ecuaciones de la recta en todas sus formas",
+            "Analizar posición relativa de rectas (paralelas, perpendiculares, secantes)",
+            "Trabajar con haces de rectas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m25",
+          "title": "Cónicas",
+          "description": "Circunferencia, parábola, elipse, hipérbola: ecuaciones canónicas/generales, elementos, tangentes, propiedades ópticas, ecuación general de 2º grado",
+          "estimatedMinutes": 120,
+          "difficulty": 5,
+          "tags": ["cónicas", "circunferencia", "parábola", "elipse", "hipérbola", "tangentes", "propiedades-ópticas"],
+          "learningObjectives": [
+            "Identificar y graficar las cuatro cónicas",
+            "Hallar ecuaciones canónicas y generales",
+            "Determinar elementos característicos (focos, vértices, ejes, asíntotas)",
+            "Calcular ecuaciones de tangentes",
+            "Aplicar propiedades ópticas (focos reflectantes)"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m26",
+          "title": "Geometría del Espacio",
+          "description": "Vectores en R³, producto escalar/vectorial/mixtos, rectas y planos, distancias, ángulos, tetraedros, esferas",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["vectores-3d", "producto-escalar", "producto-vectorial", "producto-mixto", "rectas-planos", "distancias", "ángulos"],
+          "learningObjectives": [
+            "Operar con vectores en R³",
+            "Calcular productos escalar, vectorial y mixto",
+            "Hallar ecuaciones de rectas y planos en el espacio",
+            "Calcular distancias y ángulos entre rectas y planos",
+            "Resolver problemas con tetraedros y esferas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m27",
+          "title": "Transformaciones Geométricas",
+          "description": "Isometrías, homotecias, afinidades, matriz de transformación, valores/vectores propios geométricos",
+          "estimatedMinutes": 60,
+          "difficulty": 5,
+          "tags": ["isometrías", "homotecias", "afinidades", "matriz-transformación", "autovalores", "autovectores"],
+          "learningObjectives": [
+            "Clasificar transformaciones: isometrías, homotecias, afinidades",
+            "Representar transformaciones mediante matrices",
+            "Calcular valores y vectores propios e interpretarlos geométricamente",
+            "Componer transformaciones"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cálculo Diferencial e Integral",
+      "description": "El corazón de las matemáticas aplicadas. Límites, derivadas, integrales y sus aplicaciones.",
+      "icon": "∫",
+      "color": "var(--brand-warning)",
+      "estimatedHours": 25,
+      "prerequisites": [2, 3],
+      "modules": [
+        {
+          "id": "m28",
+          "title": "Límites y Continuidad",
+          "description": "Definición ε-δ, límites laterales, infinitos, indeterminaciones, teoremas, continuidad, Teorema de Bolzano, Weierstrass, Darboux",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["límites", "ε-δ", "indeterminaciones", "continuidad", "bolzano", "weierstrass", "darboux"],
+          "learningObjectives": [
+            "Entender definición formal de límite (ε-δ)",
+            "Calcular límites: finitos, infinitos, laterales",
+            "Resolver indeterminaciones (0/0, ∞/∞, ∞-∞, 0·∞, 1^∞, 0^0, ∞^0)",
+            "Aplicar teoremas de límite y continuidad",
+            "Usar teoremas de Bolzano, Weierstrass y Darboux"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m29",
+          "title": "Derivada",
+          "description": "Definición como límite, interpretación geométrica/física, reglas (suma, producto, cociente, cadena), derivadas implícitas, paramétricas, orden superior",
+          "estimatedMinutes": 120,
+          "difficulty": 5,
+          "tags": ["derivada", "definición", "reglas", "cadena", "implícitas", "paramétricas", "orden-superior"],
+          "learningObjectives": [
+            "Definir derivada como límite de razón de cambio",
+            "Interpretar geométricamente (pendiente tangente) y físicamente (velocidad instantánea)",
+            "Aplicar reglas de derivación: suma, producto, cociente, cadena",
+            "Derivar funciones implícitas y paramétricas",
+            "Calcular derivadas de orden superior"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m30",
+          "title": "Aplicaciones de la Derivada",
+          "description": "Razones de cambio, optimización, Teorema del Valor Medio (Rolle, Lagrange, Cauchy), regla de L'Hôpital, concavidad, puntos de inflexión, asíntotas, croquizado",
+          "estimatedMinutes": 120,
+          "difficulty": 5,
+          "tags": ["optimización", "tvm", "rolle", "lagrange", "cauchy", "lhôpital", "concavidad", "croquizado"],
+          "learningObjectives": [
+            "Resolver problemas de razones de cambio relacionadas",
+            "Encontrar máximos y mínimos absolutos y relativos (optimización)",
+            "Aplicar teoremas de Rolle, Lagrange y Cauchy",
+            "Usar regla de L'Hôpital para límites indeterminados",
+            "Analizar concavidad, puntos de inflexión y asíntotas",
+            "Croquizar gráficas de funciones completamente"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m31",
+          "title": "Integral Indefinida",
+          "description": "Antiderivada, integración inmediata, sustitución, partes, fracciones parciales, sustitución trigonométrica, integrales de funciones racionales/irracionales/trigonométricas",
+          "estimatedMinutes": 120,
+          "difficulty": 5,
+          "tags": ["antiderivada", "inmediata", "sustitución", "partes", "fracciones-parciales", "trigonométrica"],
+          "learningObjectives": [
+            "Entender antiderivada e integral indefinida",
+            "Aplicar integración inmediata (tabla de integrales básicas)",
+            "Usar método de sustitución (cambio de variable)",
+            "Aplicar integración por partes",
+            "Descomponer en fracciones parciales",
+            "Usar sustituciones trigonométricas",
+            "Integrar funciones racionales, irracionales y trigonométricas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m32",
+          "title": "Integral Definida",
+          "description": "Suma de Riemann, Teorema Fundamental del Cálculo (Barrow), propiedades, cambio de variable, funciones definidas por integrales",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["riemann", "barrow", "fundamental-cálculo", "cambio-variable", "funciones-integrales"],
+          "learningObjectives": [
+            "Entender integral definida como límite de sumas de Riemann",
+            "Aplicar Teorema Fundamental del Cálculo (Barrow)",
+            "Usar propiedades de la integral definida",
+            "Aplicar cambio de variable en integrales definidas",
+            "Analizar funciones definidas por integrales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m33",
+          "title": "Aplicaciones de la Integral",
+          "description": "Área entre curvas, volúmenes (discos, washers, capas cilíndricas), longitud de arco, área de superficie de revolución, trabajo, centro de masa, teorema de Pappus",
+          "estimatedMinutes": 120,
+          "difficulty": 6,
+          "tags": ["área", "volumen", "discos", "washers", "capas-cilíndricas", "longitud-arco", "superficie-revolución", "trabajo", "centro-masa", "pappus"],
+          "learningObjectives": [
+            "Calcular áreas entre curvas",
+            "Calcular volúmenes de sólidos de revolución (discos, washers, capas cilíndricas)",
+            "Calcular longitud de arco y área de superficie de revolución",
+            "Aplicar integrales a problemas físicos: trabajo, centro de masa",
+            "Usar teorema de Pappus-Guldin"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m34",
+          "title": "Ecuaciones Diferenciales",
+          "description": "Separables, lineales de 1er orden, exactas, homogéneas, Bernoulli, 2º orden lineales cte, aplicaciones (crecimiento poblacional, enfriamiento, circuitos RL/RC)",
+          "estimatedMinutes": 90,
+          "difficulty": 6,
+          "tags": ["ecuaciones-diferenciales", "separables", "lineales", "exactas", "homogéneas", "bernoulli", "2º-orden", "aplicaciones"],
+          "learningObjectives": [
+            "Resolver ecuaciones diferenciales separables",
+            "Resolver ecuaciones lineales de primer orden (factor integrante)",
+            "Identificar y resolver ecuaciones exactas y homogéneas",
+            "Resolver ecuaciones de Bernoulli",
+            "Resolver ecuaciones lineales de 2º orden con coeficientes constantes",
+            "Modelar fenómenos reales con ecuaciones diferenciales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m35",
+          "title": "Cálculo Multivariable (Introducción)",
+          "description": "Funciones de varias variables, límites, derivadas parciales, diferencial total, regla de la cadena, gradiente, derivadas direccionales, extremos condicionados (Lagrange), integrales dobles/triples",
+          "estimatedMinutes": 120,
+          "difficulty": 6,
+          "tags": ["multivariable", "derivadas-parciales", "gradiente", "direccional", "lagrange", "integrales-dobles", "integrales-triples"],
+          "learningObjectives": [
+            "Trabajar con funciones de varias variables",
+            "Calcular límites y continuidad en Rⁿ",
+            "Calcular derivadas parciales, diferencial total y regla de la cadena",
+            "Usar gradiente y derivadas direccionales",
+            "Encontrar extremos condicionados con multiplicadores de Lagrange",
+            "Calcular integrales dobles y triples"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Álgebra Lineal y Matemáticas Discretas",
+      "description": "Estructuras algebraicas fundamentales y matemáticas discretas para computación y ciencia de datos.",
+      "icon": "🔢",
+      "color": "var(--brand-info)",
+      "estimatedHours": 15,
+      "prerequisites": [4],
+      "modules": [
+        {
+          "id": "m36",
+          "title": "Matrices y Determinantes",
+          "description": "Operaciones, inversa, rango, determinante (propiedades, Laplace, Sarrus, Gauss), regla de Cramer, teorema de Rouché-Frobenius",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["matrices", "determinantes", "inversa", "rango", "cramer", "rouché-frobenius"],
+          "learningObjectives": [
+            "Operar con matrices (suma, producto, transpuesta, inversa)",
+            "Calcular determinantes por Laplace, Sarrus y Gauss",
+            "Determinar rango de matriz",
+            "Resolver sistemas con regla de Cramer",
+            "Aplicar teorema de Rouché-Frobenius para discutir sistemas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m37",
+          "title": "Espacios Vectoriales",
+          "description": "Definición, subespacios, generadores, dependencia/independencia lineal, base, dimensión, coordenadas, cambio de base",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["espacios-vectoriales", "subespacios", "generadores", "independencia-lineal", "base", "dimensión", "cambio-base"],
+          "learningObjectives": [
+            "Verificar axiomas de espacio vectorial",
+            "Identificar subespacios y hallar generadores",
+            "Determinar dependencia/independencia lineal",
+            "Hallar base y dimensión de espacios y subespacios",
+            "Calcular coordenadas y realizar cambio de base"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m38",
+          "title": "Transformaciones Lineales",
+          "description": "Núcleo, imagen, teorema de la dimensión, matriz asociada, autovalores, autovectores, diagonalización, forma canónica de Jordan",
+          "estimatedMinutes": 120,
+          "difficulty": 6,
+          "tags": ["transformaciones-lineales", "núcleo", "imagen", "matriz-asociada", "autovalores", "autovectores", "diagonalización", "jordan"],
+          "learningObjectives": [
+            "Entender transformación lineal y sus propiedades",
+            "Hallar núcleo e imagen y aplicar teorema de la dimensión",
+            "Obtener matriz asociada a una transformación",
+            "Calcular autovalores y autovectores",
+            "Diagonalizar matrices y entender forma de Jordan"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m39",
+          "title": "Producto Interior",
+          "description": "Espacios euclídeos, ortogonalidad, proceso Gram-Schmidt, proyección ortogonal, mínimos cuadrados, descomposición QR, SVD",
+          "estimatedMinutes": 90,
+          "difficulty": 6,
+          "tags": ["producto-interior", "ortogonalidad", "gram-schmidt", "proyección", "mínimos-cuadrados", "qr", "svd"],
+          "learningObjectives": [
+            "Definir espacio euclídeo y producto interior",
+            "Ortonormalizar bases con Gram-Schmidt",
+            "Calcular proyección ortogonal sobre subespacios",
+            "Resolver problemas de mínimos cuadrados",
+            "Entender descomposición QR y SVD"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m40",
+          "title": "Matemáticas Discretas",
+          "description": "Lógica proposicional/predicados, demostración (directa, contrapositiva, contradicción, inducción fuerte/estructural), teoría de grafos básica, combinatoria, recurrencias",
+          "estimatedMinutes": 90,
+          "difficulty": 5,
+          "tags": ["lógica", "demostración", "inducción", "grafos", "combinatoria", "recurrencias"],
+          "learningObjectives": [
+            "Trabajar con lógica proposicional y de predicados",
+            "Construir demostraciones: directa, contrapositiva, contradicción, inducción",
+            "Entender conceptos básicos de teoría de grafos",
+            "Aplicar principios de combinatoria (permutaciones, combinaciones)",
+            "Resolver recurrencias lineales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Temas Avanzados y Aplicaciones",
+      "description": "Fronteras de las matemáticas modernas con aplicaciones reales en ciencia, ingeniería y tecnología.",
+      "icon": "🚀",
+      "color": "var(--brand-accent)",
+      "estimatedHours": 20,
+      "prerequisites": [5],
+      "modules": [
+        {
+          "id": "m41",
+          "title": "Análisis Real Avanzado",
+          "description": "Sucesiones de funciones, convergencia uniforme, series de potencias, series de Fourier, transformada de Laplace",
+          "estimatedMinutes": 120,
+          "difficulty": 7,
+          "tags": ["convergencia-uniforme", "series-potencias", "fourier", "laplace"],
+          "learningObjectives": [
+            "Entender convergencia puntual vs uniforme de sucesiones de funciones",
+            "Trabajar con series de potencias: radio de convergencia, derivación/integración término a término",
+            "Desarrollar funciones en series de Fourier",
+            "Aplicar transformada de Laplace a ecuaciones diferenciales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m42",
+          "title": "Análisis Complejo",
+          "description": "Funciones holomorfas, Cauchy-Riemann, integral de Cauchy, serie de Laurent, residuos, aplicaciones a integrales reales",
+          "estimatedMinutes": 120,
+          "difficulty": 7,
+          "tags": ["holomorfas", "cauchy-riemann", "integral-cauchy", "laurent", "residuos"],
+          "learningObjectives": [
+            "Entender funciones holomorfas y ecuaciones de Cauchy-Riemann",
+            "Calcular integrales complejas con teorema de Cauchy",
+            "Desarrollar en serie de Laurent y calcular residuos",
+            "Usar teorema de los residuos para integrales reales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m43",
+          "title": "Ecuaciones Diferenciales Parciales",
+          "description": "Clasificación, separación de variables, ecuación del calor, onda, Laplace, series de Fourier en PDEs",
+          "estimatedMinutes": 120,
+          "difficulty": 7,
+          "tags": ["pdes", "separación-variables", "calor", "onda", "laplace", "fourier-pdes"],
+          "learningObjectives": [
+            "Clasificar EDP de segundo orden",
+            "Resolver por separación de variables",
+            "Resolver ecuación del calor, onda y Laplace",
+            "Aplicar series de Fourier a problemas de frontera"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m44",
+          "title": "Probabilidad y Estadística Matemática",
+          "description": "Espacios de probabilidad, variables aleatorias, distribuciones (discretas/continuas), límite central, estimación, contraste, regresión",
+          "estimatedMinutes": 120,
+          "difficulty": 6,
+          "tags": ["probabilidad", "variables-aleatorias", "distribuciones", "límite-central", "estimación", "contraste", "regresión"],
+          "learningObjectives": [
+            "Definir espacio de probabilidad y variables aleatorias",
+            "Trabajar con distribuciones discretas (binomial, Poisson) y continuas (normal, exponencial)",
+            "Aplicar teorema del límite central",
+            "Realizar estimación puntual e intervalar",
+            "Diseñar y ejecutar contrastes de hipótesis",
+            "Ajustar modelos de regresión lineal"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m45",
+          "title": "Optimización e Investigación de Operaciones",
+          "description": "Programación lineal (Simplex, dualidad), convexa, KKT, programación entera, redes, colas, decisión",
+          "estimatedMinutes": 90,
+          "difficulty": 6,
+          "tags": ["programación-lineal", "simplex", "dualidad", "convexa", "kkt", "entera", "redes", "colas"],
+          "learningObjectives": [
+            "Formular y resolver problemas de programación lineal con Simplex",
+            "Entender dualidad e interpretar variables duales",
+            "Aplicar condiciones KKT en optimización convexa",
+            "Resolver problemas de programación entera",
+            "Modelar redes y sistemas de colas"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        },
+        {
+          "id": "m46",
+          "title": "Aplicaciones STEM",
+          "description": "Física matemática, ML/AI (gradiente descendente, backprop), criptografía (RSA, curvas elípticas), finanzas (Black-Scholes), biología matemática",
+          "estimatedMinutes": 120,
+          "difficulty": 7,
+          "tags": ["física-matemática", "machine-learning", "gradiente-descendente", "backprop", "criptografía", "rsa", "curvas-elípticas", "black-scholes", "biología-matemática"],
+          "learningObjectives": [
+            "Aplicar matemáticas a problemas de física clásica y cuántica",
+            "Entender fundamentos matemáticos de ML: gradiente descendente, backpropagation",
+            "Implementar RSA y entender criptografía de curvas elípticas",
+            "Derivar y aplicar modelo Black-Scholes en finanzas",
+            "Modelar poblaciones y epidemias con ecuaciones diferenciales"
+          ],
+          "sections": ["theory", "practice", "quiz", "interactive"]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "totalModules": 46,
+    "totalPhases": 7,
+    "totalEstimatedHours": 120,
+    "difficultyRange": [1, 7],
+    "lastUpdated": "2026-10-29",
+    "author": "Adeptus Vinictus II",
+    "license": "MIT"
+  }
+}

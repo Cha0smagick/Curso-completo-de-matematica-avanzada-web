@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Módulo 1: ¿Qué es un número? - Conteo, cardinalidad, ordinalidad, subitizing, principio de abstracción">
+  <title>¿Qué es un número? - Matemáticas Avanzadas</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/reset.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/course.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/print.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="flex items-center gap-4">
+        <a href="../../#dashboard" class="flex items-center gap-2 text-decoration-none">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: var(--gradient-primary);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <span class="font-display font-bold text-xl">MateAvanzada</span>
+        </a>
+        <nav class="flex-1 flex justify-center" aria-label="Navegación del módulo">
+          <div class="tabs" role="tablist">
+            <button class="tab active" role="tab" data-section="theory" aria-selected="true">Teoría</button>
+            <button class="tab" role="tab" data-section="practice" aria-selected="false">Práctica</button>
+            <button class="tab" role="tab" data-section="quiz" aria-selected="false">Quiz</button>
+            <button class="tab" role="tab" data-section="interactive" aria-selected="false">Interactivo</button>
+          </div>
+        </nav>
+      </div>
+      <div class="flex items-center gap-2">
+        <progress-ring class="progress-ring" value="0" max="1" stroke-width="4" show-percentage size="48"></progress-ring>
+      </div>
+    </header>
+
+    <main class="app-main" id="main-content">
+      <div class="container">
+        <!-- Module Header -->
+        <header class="mb-8 scroll-reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="badge badge-primary">Fase 0</span>
+            <span class="badge badge-neutral">Módulo 1/5</span>
+            <span class="badge badge-success">30 min</span>
+          </div>
+          <h1 class="text-3xl font-extrabold mb-2">¿Qué es un número?</h1>
+          <p class="text-muted text-lg">Conteo, cardinalidad, ordinalidad, subitizing, principio de abstracción</p>
+        </header>
+
+        <!-- Section: Theory -->
+        <section id="section-theory" class="tab-panel active scroll-reveal" role="tabpanel" aria-labelledby="tab-theory">
+          <div class="theory-section">
+            <header class="theory-section-header">
+              <span class="theory-section-number">1.1</span>
+              <h2 class="theory-section-title">El origen del conteo</h2>
+            </header>
+            <div class="theory-content">
+              <p>Antes de que existieran los números como los conocemos, los humanos necesitaban <strong>contar</strong>. El conteo es una de las actividades matemáticas más antiguas y fundamentales.</p>
+              
+              <div class="callout callout-history">
+                <span class="callout-title">Historia</span>
+                <span class="callout-text">Los primeros registros de conteo datan de hace más de 30,000 años: huesos con muescas (como el hueso de Ishango) usados para llevar registro de cantidades, posiblemente fases lunares o conteo de animales.</span>
+              </div>
+
+              <h3>Los tres principios del conteo</h3>
+              <p>Para contar correctamente, intuitivamente seguimos tres principios fundamentales:</p>
+              
+              <div class="grid grid-auto-fit gap-4 mt-4">
+                <div class="card p-4">
+                  <h4 class="font-semibold mb-2" style="color: var(--brand-primary);">1. Correspondencia uno a uno</h4>
+                  <p class="text-sm text-muted">Cada objeto se empareja con <em>exactamente una</em> palabra numérica. No se saltan ni se repiten objetos.</p>
+                </div>
+                <div class="card p-4">
+                  <h4 class="font-semibold mb-2" style="color: var(--brand-secondary);">2. Orden estable</h4>
+                  <p class="text-sm text-muted">Las palabras numéricas se dicen siempre en el <em>mismo orden</em>: uno, dos, tres, cuatro...</p>
+                </div>
+                <div class="card p-4">
+                  <h4 class="font-semibold mb-2" style="color: var(--brand-success);">3. Cardinalidad</h4>
+                  <p class="text-sm text-muted">El <em>último número</em> dicho al contar representa la <em>cantidad total</em> del conjunto.</p>
+                </div>
+              </div>
+
+              <div class="callout callout-definition">
+                <span class="callout-title">Definición: Principio de abstracción</span>
+                <span class="callout-text">Cualquier colección de objetos discretos puede contarse, independientemente de su naturaleza (manzanas, estrellas, ideas, sonidos). El número es una propiedad abstracta de la colección.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-section">
+            <header class="theory-section-header">
+              <span class="theory-section-number">1.2</span>
+              <h2 class="theory-section-title">Cardinalidad vs Ordinalidad</h2>
+            </header>
+            <div class="theory-content">
+              <p>Los números tienen dos "caras" fundamentales que a menudo se confunden:</p>
+
+              <div class="grid grid-cols-2 gap-6 mt-4">
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold mb-3" style="color: var(--brand-primary);">Cardinalidad (¿Cuántos?)</h3>
+                  <p>Responde a la pregunta <strong>"¿cuántos?"</strong>. Es la propiedad de <em>cuantía</em> de un conjunto.</p>
+                  <ul class="mt-3 space-y-2">
+                    <li><strong>Notación:</strong> <math-formula latex="|A| = n"></math-formula> o <math-formula latex="n(A) = n"></math-formula></li>
+                    <li><strong>Ejemplo:</strong> Un conjunto de 5 manzanas tiene cardinalidad 5</li>
+                    <li><strong>Propiedad:</strong> Dos conjuntos tienen la misma cardinalidad si existe una <em>biyección</em> entre ellos</li>
+                  </ul>
+                </div>
+                <div class="card p-6">
+                  <h3 class="text-xl font-bold mb-3" style="color: var(--brand-secondary);">Ordinalidad (¿Qué posición?)</h3>
+                  <p>Responde a la pregunta <strong>"¿qué posición?"</strong>. Es la propiedad de <em>orden</em> en una sucesión.</p>
+                  <ul class="mt-3 space-y-2">
+                    <li><strong>Notación:</strong> 1º, 2º, 3º... (primero, segundo, tercero...)</li>
+                    <li><strong>Ejemplo:</strong> En una carrera, el corredor que llega en 3ª posición</li>
+                    <li><strong>Propiedad:</strong> Permite comparar: "A viene antes que B"</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="callout callout-tip mt-6">
+                <span class="callout-title">Clave para aprender</span>
+                <span class="callout-text">Los niños primero entienden la cardinalidad ("tengo 3 coches") y mucho después la ordinalidad ("soy el 3º en la fila"). En matemáticas avanzadas, esta distinción es crucial: los números cardinales miden <em>tamaño</em>, los ordinales miden <em>posición</em>.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-section">
+            <header class="theory-section-header">
+              <span class="theory-section-number">1.3</span>
+              <h2 class="theory-section-title">Subitizing: ver sin contar</h2>
+            </header>
+            <div class="theory-content">
+              <p><strong>Subitizing</strong> (del latín <em>subitus</em>, "repentino") es la capacidad de reconocer instantáneamente la cantidad de elementos en un conjunto pequeño <strong>sin contar uno a uno</strong>.</p>
+
+              <div class="grid grid-cols-2 gap-6 mt-4">
+                <div>
+                  <h4>Subitizing perceptual (1-4 elementos)</h4>
+                  <p>Innato, automático, instantáneo. Reconocemos patrones visuales familiares:</p>
+                  <div class="grid grid-cols-4 gap-3 mt-3">
+                    <div class="card p-4 text-center" style="background: var(--color-bg);">
+                      <div style="font-size: 3rem;">●</div>
+                      <div class="text-sm text-muted mt-1">1</div>
+                    </div>
+                    <div class="card p-4 text-center" style="background: var(--color-bg);">
+                      <div style="font-size: 3rem;">● ●</div>
+                      <div class="text-sm text-muted mt-1">2</div>
+                    </div>
+                    <div class="card p-4 text-center" style="background: var(--color-bg);">
+                      <div style="font-size: 3rem;">● ● ●</div>
+                      <div class="text-sm text-muted mt-1">3</div>
+                    </div>
+                    <div class="card p-4 text-center" style="background: var(--color-bg);">
+                      <div style="font-size: 3rem;">● ● ● ●</div>
+                      <div class="text-sm text-muted mt-1">4</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4>Subitizing conceptual (5+ elementos)</h4>
+                  <p>Requiere descomposición mental en grupos conocidos:</p>
+                  <div class="card p-4 mt-3" style="background: var(--color-bg);">
+                    <p style="font-size: 2rem; text-align: center;">● ● ● ● ● ●</p>
+                    <p class="text-center text-sm text-muted mt-2">El cerebro ve: 3 + 3 = 6, o 4 + 2 = 6</p>
+                  </div>
+                  <p class="mt-3 text-sm">Esta habilidad es la base del <strong>sentido numérico</strong> y predice el éxito matemático futuro.</p>
+                </div>
+              </div>
+
+              <interactive-graph 
+                type="function"
+                data='{"functions":[{"expr":"1","color":"var(--brand-primary)","label":"Perceptual (1-4)"}],"range":[0,10]}'
+                sliders='[{"var":"n","min":1,"max":10,"step":1,"default":4,"label":"Elementos"}]'
+                points="false"
+                export="png"
+                height="300px">
+              </interactive-graph>
+            </div>
+          </div>
+
+          <div class="theory-section">
+            <header class="theory-section-header">
+              <span class="theory-section-number">1.4</span>
+              <h2 class="theory-section-title">La recta numérica: números como posiciones</h2>
+            </header>
+            <div class="theory-content">
+              <p>La <strong>recta numérica</strong> es una representación visual poderosa que une cardinalidad y ordinalidad:</p>
+
+              <ul class="mt-4 space-y-3">
+                <li>Cada número corresponde a un <strong>punto único</strong> en la recta</li>
+                <li>El <strong>orden</strong> de los números coincide con su posición izquierda-derecha</li>
+                <li>La <strong>distancia</strong> entre puntos consecutivos es constante (unidad)</li>
+                <li>El <strong>cero</strong> es el origen, separa positivos (derecha) de negativos (izquierda)</li>
+              </ul>
+
+              <interactive-graph
+                type="function"
+                data='{"functions":[{"expr":"x","color":"var(--brand-primary)","label":"y = x"}],"range":[-5,5]}'
+                sliders='[{"var":"a","min":-5,"max":5,"step":1,"default":0,"label":"Posición en la recta"}]'
+                points="draggable"
+                export="png"
+                height="300px">
+              </interactive-graph>
+
+              <div class="callout callout-example mt-6">
+                <span class="callout-title">Ejemplo visual</span>
+                <span class="callout-text">En la recta numérica de arriba, arrastra el punto para ver cómo cada posición corresponde a un número. La distancia desde el origen (0) hasta el punto <strong>es el valor absoluto</strong> del número.</span>
+              </div>
+
+              <math-formula 
+                latex="|x| = \begin{cases} x & \text{si } x \geq 0 \\ -x & \text{si } x < 0 \end{cases}"
+                display
+                hover-explain
+                data-explain="Valor absoluto: distancia desde el cero en la recta numérica">
+              </math-formula>
+            </div>
+          </div>
+
+          <div class="theory-section">
+            <header class="theory-section-header">
+              <span class="theory-section-number">1.5</span>
+              <h2 class="theory-section-title">Resumen y conexión con lo que sigue</h2>
+            </header>
+            <div class="theory-content">
+              <div class="callout callout-theorem">
+                <span class="callout-title">Lo que has aprendido</span>
+                <span class="callout-text">
+                  <ol class="mt-2 space-y-1">
+                    <li>Contar requiere: correspondencia 1-1, orden estable, cardinalidad</li>
+                    <li>Cardinalidad = "cuántos" (tamaño del conjunto)</li>
+                    <li>Ordinalidad = "qué posición" (lugar en sucesión)</li>
+                    <li>Subitizing = reconocer cantidades pequeñas sin contar (base del sentido numérico)</li>
+                    <li>La recta numérica une cantidad y posición visualmente</li>
+                    <li>Principio de abstracción: cualquier colección discreta es contable</li>
+                  </ol>
+                </span>
+              </div>
+
+              <div class="callout callout-tip mt-4">
+                <span class="callout-title">Próximo paso</span>
+                <span class="callout-text">En el siguiente módulo <strong>"Sentido numérico"</strong> desarrollaremos la intuición sobre magnitudes, estimación y benchmarking mental. Esta base nos permitirá entender las operaciones (suma, resta, multiplicación, división) no como reglas memorizadas, sino como <em>acciones sobre cantidades</em>.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Practice -->
+        <section id="section-practice" class="tab-panel scroll-reveal" role="tabpanel" aria-labelledby="tab-practice" hidden>
+          <header class="mb-6">
+            <h2 class="text-2xl font-bold mb-2">Práctica Guiada</h2>
+            <p class="text-muted">Aplica lo aprendido con ejercicios paso a paso</p>
+          </header>
+
+          <div class="practice-section">
+            <header class="practice-header">
+              <h3 class="practice-title">Ejercicio 1: Correspondencia uno a uno</h3>
+              <div class="practice-meta">
+                <span class="badge badge-primary">Fundamental</span>
+                <span class="badge badge-neutral">5 min</span>
+              </div>
+            </header>
+            <div class="practice-card">
+              <div class="practice-card-header">
+                <span class="practice-card-number">1.1</span>
+                <div class="practice-card-difficulty">
+                  <span class="dot filled"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+              </div>
+              <div class="practice-card-body">
+                <p class="practice-question">Cuenta los siguientes conjuntos emparejando cada objeto con un número. Di en voz alta el número mientras tocas cada objeto.</p>
+                
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                  <div class="card p-4 text-center">
+                    <div style="font-size: 2rem;">🍎 🍎 🍎</div>
+                    <p class="text-sm text-muted mt-2">Conjunto A</p>
+                  </div>
+                  <div class="card p-4 text-center">
+                    <div style="font-size: 2rem;">⭐ ⭐ ⭐ ⭐</div>
+                    <p class="text-sm text-muted mt-2">Conjunto B</p>
+                  </div>
+                  <div class="card p-4 text-center">
+                    <div style="font-size: 2rem;">🔵 🔵 🔵 🔵 🔵</div>
+                    <p class="text-sm text-muted mt-2">Conjunto C</p>
+                  </div>
+                </div>
+
+                <div class="practice-hints mt-4">
+                  <div class="practice-hint">
+                    <span class="practice-hint-icon">💡</span>
+                    <div class="practice-hint-content">
+                      <span class="practice-hint-level">Pista 1</span>
+                      Toca cada objeto una sola vez mientras dices: "uno, dos, tres..."
+                    </div>
+                  </div>
+                  <div class="practice-hint">
+                    <span class="practice-hint-icon">💡</span>
+                    <div class="practice-hint-content">
+                      <span class="practice-hint-level">Pista 2</span>
+                      El último número que digas es la cardinalidad del conjunto
+                    </div>
+                  </div>
+                </div>
+
+                <div class="practice-solution">
+                  <div class="practice-solution-header">✓ Solución</div>
+                  <div class="practice-solution-content">
+                    <div class="practice-solution-step">Conjunto A: 3 manzanas → cardinalidad 3</div>
+                    <div class="practice-solution-step">Conjunto B: 4 estrellas → cardinalidad 4</div>
+                    <div class="practice-solution-step">Conjunto C: 5 círculos → cardinalidad 5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-section">
+            <header class="practice-header">
+              <h3 class="practice-title">Ejercicio 2: Subitizing perceptual</h3>
+              <div class="practice-meta">
+                <span class="badge badge-secondary">Entrenamiento</span>
+                <span class="badge badge-neutral">3 min</span>
+              </div>
+            </header>
+            <div class="practice-card">
+              <div class="practice-card-header">
+                <span class="practice-card-number">1.2</span>
+                <div class="practice-card-difficulty">
+                  <span class="dot filled"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+              </div>
+              <div class="practice-card-body">
+                <p class="practice-question">Mira cada grupo durante <strong>1 segundo</strong> y di cuántos elementos hay <strong>sin contar</strong>.</p>
+                
+                <div class="grid grid-cols-4 gap-3 mt-4" id="subitizing-groups">
+                  <!-- Se generan dinámicamente -->
+                </div>
+
+                <button class="btn btn-primary mt-4" id="btn-new-subitizing">Nuevo grupo</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-section">
+            <header class="practice-header">
+              <h3 class="practice-title">Ejercicio 3: Recta numérica</h3>
+              <div class="practice-meta">
+                <span class="badge badge-success">Aplicación</span>
+                <span class="badge badge-neutral">5 min</span>
+              </div>
+            </header>
+            <div class="practice-card">
+              <div class="practice-card-header">
+                <span class="practice-card-number">1.3</span>
+                <div class="practice-card-difficulty">
+                  <span class="dot filled"></span>
+                  <span class="dot filled"></span>
+                  <span class="dot"></span>
+                </div>
+              </div>
+              <div class="practice-card-body">
+                <p class="practice-question">Ubica los siguientes números en la recta numérica interactiva:</p>
+                
+                <interactive-graph
+                  type="function"
+                  data='{"functions":[{"expr":"0","color":"transparent","label":""}],"range":[-10,10]}'
+                  points="draggable"
+                  export="png"
+                  height="250px"
+                  id="number-line-practice">
+                </interactive-graph>
+                
+                <div class="grid grid-cols-5 gap-2 mt-4">
+                  <button class="btn btn-secondary btn-sm" data-value="-7">-7</button>
+                  <button class="btn btn-secondary btn-sm" data-value="-3">-3</button>
+                  <button class="btn btn-secondary btn-sm" data-value="0">0</button>
+                  <button class="btn btn-secondary btn-sm" data-value="4">4</button>
+                  <button class="btn btn-secondary btn-sm" data-value="8">8</button>
+                </div>
+
+                <div class="practice-hints mt-4">
+                  <div class="practice-hint">
+                    <span class="practice-hint-icon">💡</span>
+                    <div class="practice-hint-content">
+                      <span class="practice-hint-level">Pista</span>
+                      Los números negativos están a la izquierda del 0, los positivos a la derecha. La distancia desde el 0 es el valor absoluto.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Quiz -->
+        <section id="section-quiz" class="tab-panel scroll-reveal" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+          <quiz-card 
+            mode="learning"
+            question-id="m01-q1"
+            difficulty="adaptive"
+            hints="progressive"
+            explanation="required"
+            xp="10"
+            data='{
+              "type": "multiple-choice",
+              "question": "¿Cuál de los siguientes NO es un principio del conteo?",
+              "options": [
+                {"id": "a", "text": "Correspondencia uno a uno", "correct": false},
+                {"id": "b", "text": "Orden estable", "correct": false},
+                {"id": "c", "text": "Cardinalidad", "correct": false},
+                {"id": "d", "text": "Conmutatividad", "correct": true}
+              ],
+              "hints": [
+                "Los tres principios son: uno a uno, orden estable, cardinalidad",
+                "La conmutatividad es una propiedad de la suma y multiplicación, no del conteo"
+              ],
+              "explanation": "Los tres principios fundamentales del conteo son: 1) Correspondencia uno a uno (cada objeto se empareja con un número), 2) Orden estable (los números siempre en el mismo orden), 3) Cardinalidad (el último número dicho indica la cantidad total). La conmutatividad (a+b = b+a) es una propiedad de las operaciones aritméticas, no del conteo en sí."
+            }'>
+          </quiz-card>
+        </section>
+
+        <!-- Section: Interactive -->
+        <section id="section-interactive" class="tab-panel scroll-reveal" role="tabpanel" aria-labelledby="tab-interactive" hidden>
+          <header class="mb-6">
+            <h2 class="text-2xl font-bold mb-2">Exploración Interactiva</h2>
+            <p class="text-muted">Experimenta con los conceptos de forma visual</p>
+          </header>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="card p-6">
+              <h3 class="text-lg font-semibold mb-4">Generador de patrones de subitizing</h3>
+              <p class="text-sm text-muted mb-4">Observa patrones aleatorios y entrena tu reconocimiento instantáneo</p>
+              <interactive-graph
+                type="function"
+                data='{"functions":[{"expr":"1","color":"var(--brand-primary)","label":"Perceptual (1-4)"}],"range":[0,10]}'
+                sliders='[{"var":"n","min":1,"max":10,"step":1,"default":4,"label":"Elementos"}]'
+                points="false"
+                export="png"
+                height="300px">
+              </interactive-graph>
+            </div>
+            <div class="card p-6">
+              <h3 class="text-lg font-semibold mb-4">Recta numérica interactiva</h3>
+              <p class="text-sm text-muted mb-4">Explora la relación entre posición, distancia y valor absoluto</p>
+              <interactive-graph
+                type="function"
+                data='{"functions":[{"expr":"abs(x)","color":"var(--brand-primary)","label":"|x|"},{"expr":"x","color":"var(--brand-secondary)","label":"x"}],"range":[-10,10]}'
+                sliders='[{"var":"p","min":-10,"max":10,"step":1,"default":3,"label":"Posición x"}]'
+                points="draggable"
+                export="png"
+                height="300px">
+              </interactive-graph>
+            </div>
+          </div>
+        </section>
+
+        <!-- Module Navigation -->
+        <nav class="mt-10 flex justify-between" aria-label="Navegación entre módulos">
+          <button class="btn btn-secondary" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Módulo anterior
+          </button>
+          <a href="../m02/index.html" class="btn btn-primary">
+            Siguiente módulo
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    // Inicializar tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.tab-panel');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.section;
+          
+          tabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          
+          panels.forEach(p => {
+            p.hidden = true;
+            p.classList.remove('active');
+          });
+          document.getElementById(`section-${target}`).hidden = false;
+          document.getElementById(`section-${target}`).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
