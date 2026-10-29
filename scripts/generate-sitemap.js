@@ -1,8 +1,12 @@
 // scripts/generate-sitemap.js
 // Genera sitemap.xml para SEO
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const BASE_URL = 'https://cha0smagick.github.io/Curso-completo-de-matematica-avanzada-web';
 const DIST_DIR = path.join(__dirname, '..', 'dist');
