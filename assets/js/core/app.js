@@ -40,25 +40,39 @@ class App {
       console.log('[App] Inicializando Matemáticas Avanzadas...');
       
       // 1. Cargar currículo
+      console.log('[App] Step 1: loadCurriculum');
       await this.loadCurriculum();
+      console.log('[App] Step 1 OK, phases:', curriculumData?.phases?.length);
       
       // 2. Inicializar store (carga IndexedDB)
+      console.log('[App] Step 2: store.init');
       await store.init();
+      console.log('[App] Step 2 OK');
       
       // 3. Registrar rutas
+      console.log('[App] Step 3: registerRoutes');
       this.registerRoutes();
+      console.log('[App] Step 3 OK');
       
       // 4. Inicializar router
+      console.log('[App] Step 4: router.start');
       router.start();
+      console.log('[App] Step 4 OK');
       
       // 5. Configurar event listeners globales
+      console.log('[App] Step 5: setupGlobalListeners');
       this.setupGlobalListeners();
+      console.log('[App] Step 5 OK');
       
       // 6. Configurar Service Worker updates
+      console.log('[App] Step 6: setupSWUpdates');
       this.setupSWUpdates();
+      console.log('[App] Step 6 OK');
       
       // 7. Verificar si hay onboarding pendiente
+      console.log('[App] Step 7: checkOnboarding');
       await this.checkOnboarding();
+      console.log('[App] Step 7 OK');
       
       // 8. Marcar como inicializado
       this.initialized = true;
@@ -70,7 +84,10 @@ class App {
       
     } catch (error) {
       console.error('[App] Error de inicialización:', error);
-      this.showError('Error al inicializar la aplicación. Por favor recarga la página.');
+      console.error('[App] Error name:', error.name);
+      console.error('[App] Error message:', error.message);
+      console.error('[App] Error stack:', error.stack);
+      this.showError('Error al inicializar la aplicación. Por favor recarga la página. [' + error.name + ': ' + error.message + ']');
     }
   }
   
