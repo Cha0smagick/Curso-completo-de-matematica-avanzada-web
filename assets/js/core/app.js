@@ -44,9 +44,13 @@ class App {
       await this.loadCurriculum();
       console.log('[App] Step 1 OK, phases:', curriculumData?.phases?.length);
       
-      // 2. Inicializar store (carga IndexedDB)
+      // 2. Inicializar store (carga IndexedDB) - con fallback
       console.log('[App] Step 2: store.init');
-      await store.init();
+      try {
+        await store.init();
+      } catch (storeError) {
+        console.warn('[App] Store init failed, continuing:', storeError.message);
+      }
       console.log('[App] Step 2 OK');
       
       // 3. Registrar rutas
@@ -54,14 +58,22 @@ class App {
       this.registerRoutes();
       console.log('[App] Step 3 OK');
       
-      // 4. Inicializar router
+      // 4. Inicializar router - con fallback
       console.log('[App] Step 4: router.start');
-      router.start();
+      try {
+        router.start();
+      } catch (routerError) {
+        console.warn('[App] Router start failed:', routerError.message);
+      }
       console.log('[App] Step 4 OK');
       
-      // 5. Configurar event listeners globales
+      // 5. Configurar event listeners globales - con fallback
       console.log('[App] Step 5: setupGlobalListeners');
-      this.setupGlobalListeners();
+      try {
+        this.setupGlobalListeners();
+      } catch (listenersError) {
+        console.warn('[App] setupGlobalListeners failed:', listenersError.message);
+      }
       console.log('[App] Step 5 OK');
       
       // 6. Configurar Service Worker updates
@@ -69,9 +81,13 @@ class App {
       this.setupSWUpdates();
       console.log('[App] Step 6 OK');
       
-      // 7. Verificar si hay onboarding pendiente
+      // 7. Verificar si hay onboarding pendiente - con fallback
       console.log('[App] Step 7: checkOnboarding');
-      await this.checkOnboarding();
+      try {
+        await this.checkOnboarding();
+      } catch (onboardingError) {
+        console.warn('[App] checkOnboarding failed:', onboardingError.message);
+      }
       console.log('[App] Step 7 OK');
       
       // 8. Marcar como inicializado
@@ -80,7 +96,11 @@ class App {
       console.log('[App] Inicialización completada');
       
       // Emitir evento de ready
-      eventBus.emit('app:ready', { curriculum: curriculumData });
+      try {
+        eventBus.emit('app:ready', { curriculum: curriculumData });
+      } catch (emitError) {
+        console.warn('[App] eventBus.emit failed:', emitError.message);
+      }
       
     } catch (error) {
       console.error('[App] Error de inicialización:', error);
