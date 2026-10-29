@@ -67,8 +67,14 @@ class App {
       }
       console.log('[App] Step 3 OK');
       
-      // 4. Inicializar router - con fallback (disabled for debugging)
-      console.log('[App] Step 4: router.start (skipped for debugging)');
+      // 4. Inicializar router - con fallback
+      console.log('[App] Step 4: router.start');
+      try {
+        router.start();
+      } catch (routerError) {
+        console.warn('[App] Router start failed:', routerError.message);
+      }
+      console.log('[App] Step 4 OK');
       
       // 5. Configurar event listeners globales - con fallback
       console.log('[App] Step 5: setupGlobalListeners');
@@ -88,8 +94,14 @@ class App {
       }
       console.log('[App] Step 6 OK');
       
-      // 7. Verificar si hay onboarding pendiente - skipped for debugging
-      console.log('[App] Step 7: checkOnboarding (skipped for debugging)');
+      // 7. Verificar si hay onboarding pendiente - con fallback
+      console.log('[App] Step 7: checkOnboarding');
+      try {
+        await this.checkOnboarding();
+      } catch (onboardingError) {
+        console.warn('[App] checkOnboarding failed:', onboardingError.message);
+      }
+      console.log('[App] Step 7 OK');
       
       // 8. Marcar como inicializado
       this.initialized = true;
