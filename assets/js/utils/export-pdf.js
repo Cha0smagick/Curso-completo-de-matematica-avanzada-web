@@ -35,11 +35,25 @@ let jsPDFLoaded = false;
 let html2canvasLoaded = false;
 
 async function loadDependencies() {
+  const jspdfName = 'jspdf';
+  const html2canvasName = 'html2canvas';
   if (!jsPDFLoaded) {
-    await import('jspdf').then(m => { window.jsPDF = m.default; jsPDFLoaded = true; });
+    try {
+      const m = await import(jspdfName);
+      window.jsPDF = m.default;
+      jsPDFLoaded = true;
+    } catch (e) {
+      console.warn('[ExportPDF] jspdf not available');
+    }
   }
   if (!html2canvasLoaded) {
-    await import('html2canvas').then(m => { window.html2canvas = m.default; html2canvasLoaded = true; });
+    try {
+      const m = await import(html2canvasName);
+      window.html2canvas = m.default;
+      html2canvasLoaded = true;
+    } catch (e) {
+      console.warn('[ExportPDF] html2canvas not available');
+    }
   }
 }
 

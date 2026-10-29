@@ -674,51 +674,10 @@ export class CertificateView extends HTMLElement {
     });
   }
   
-  async downloadPDF() {
-    // Usar html2canvas + jsPDF (en producción importar dinámicamente)
-    this.showToast('Generando PDF...', 'info');
-    
-    try {
-      // Dynamic import para no bloquear
-      const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
-        import('jspdf'),
-        import('html2canvas')
-      ]);
-      
-      const certificate = this.shadowRoot.querySelector('.certificate');
-      if (!certificate) throw new Error('Certificado no encontrado');
-      
-      const canvas = await html2canvas(certificate, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: this.template === 'modern' ? '#0f172a' : '#ffffff'
-      });
-      
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'mm',
-        format: 'a4'
-      });
-      
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const finalWidth = imgWidth * ratio;
-      const finalHeight = imgHeight * ratio;
-      const x = (pdfWidth - finalWidth) / 2;
-      const y = (pdfHeight - finalHeight) / 2;
-      
-      pdf.addImage(imgData, 'PNG', x, y, finalWidth, finalHeight);
-      pdf.save(`certificado-${this.certificateData.id}.pdf`);
-      
-      this.showToast('PDF descargado correctamente', 'success');
-    } catch (error) {
-      console.error('[CertificateView] PDF generation failed:', error);
-      this.showToast('Error al generar PDF. Usa la impresión del navegador (Ctrl+P).', 'warning');
-    }
+  downloadPDF() {
+    // Usar impresión del navegador (sin dependencias externas)
+    this.showToast('Abriendo diálogo de impresión...', 'info');
+    setTimeout(() => window.print(), 100);
   }
   
   shareCertificate() {
