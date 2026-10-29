@@ -394,6 +394,6 @@ export class Router {
 }
 
 // Instancia global
-export const router = new Router({ base: '/Curso-completo-de-matematica-avanzada/' });
+export const router = new Router({ base: '/Curso-completo-de-matematica-avanzada-web/' });
 
 export default router;

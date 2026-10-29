@@ -6,7 +6,7 @@ import { resolve } from 'path';
 export default defineConfig({
   root: '.',
   publicDir: 'public',
-  base: '/Curso-completo-de-matematica-avanzada/',
+  base: '/Curso-completo-de-matematica-avanzada-web/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

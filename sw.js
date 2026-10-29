@@ -11,31 +11,31 @@ const FONT_CACHE = 'fonts-v1';
 
 // Archivos estáticos para cachear inmediatamente
 const STATIC_ASSETS = [
-  '/Curso-completo-de-matematica-avanzada/',
-  '/Curso-completo-de-matematica-avanzada/index.html',
-  '/Curso-completo-de-matematica-avanzada/manifest.json',
-  '/Curso-completo-de-matematica-avanzada/assets/css/variables.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/reset.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/layout.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/components.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/course.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/animations.css',
-  '/Curso-completo-de-matematica-avanzada/assets/css/print.css',
-  '/Curso-completo-de-matematica-avanzada/assets/js/core/app.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/core/store.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/core/router.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/core/events.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/MathFormula.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/HoverTooltip.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/InteractiveGraph.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/QuizCard.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/ProgressRing.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/CertificateView.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/components/SpacedRepetition.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/utils/katex-helper.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/utils/storage.js',
-  '/Curso-completo-de-matematica-avanzada/assets/js/utils/export-pdf.js',
-  '/Curso-completo-de-matematica-avanzada/assets/data/curriculum.json',
+  '/Curso-completo-de-matematica-avanzada-web/',
+  '/Curso-completo-de-matematica-avanzada-web/index.html',
+  '/Curso-completo-de-matematica-avanzada-web/manifest.json',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/variables.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/reset.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/layout.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/components.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/course.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/animations.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/css/print.css',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/core/app.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/core/store.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/core/router.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/core/events.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/MathFormula.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/HoverTooltip.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/InteractiveGraph.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/QuizCard.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/ProgressRing.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/CertificateView.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/components/SpacedRepetition.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/utils/katex-helper.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/utils/storage.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/js/utils/export-pdf.js',
+  '/Curso-completo-de-matematica-avanzada-web/assets/data/curriculum.json',
   'https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap'
 ];
@@ -196,8 +196,8 @@ self.addEventListener('push', event => {
   const data = event.data.json();
   const options = {
     body: data.body,
-    icon: '/Curso-completo-de-matematica-avanzada/assets/images/icon-192.png',
-    badge: '/Curso-completo-de-matematica-avanzada/assets/images/badge-72.png',
+    icon: '/Curso-completo-de-matematica-avanzada-web/assets/images/icon-192.png',
+    badge: '/Curso-completo-de-matematica-avanzada-web/assets/images/badge-72.png',
     vibrate: [200, 100, 200],
     data: data.data || {},
     actions: [
@@ -227,7 +227,7 @@ self.addEventListener('notificationclick', event => {
             }
           }
           // Si no, abrir nueva
-          return clients.openWindow('/Curso-completo-de-matematica-avanzada/#review');
+          return clients.openWindow('/Curso-completo-de-matematica-avanzada-web/#review');
         })
     );
   }
@@ -266,12 +266,12 @@ async function syncAnalytics() {
 async function cacheModule(moduleId) {
   const cache = await caches.open(DYNAMIC_CACHE);
   const modulePaths = [
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/index.html`,
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/theory.html`,
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/practice.html`,
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/quiz.html`,
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/interactive.html`,
-    `/Curso-completo-de-matematica-avanzada/modules/${moduleId}/data.json`
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/index.html`,
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/theory.html`,
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/practice.html`,
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/quiz.html`,
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/interactive.html`,
+    `/Curso-completo-de-matematica-avanzada-web/modules/${moduleId}/data.json`
   ];
   
   await Promise.all(

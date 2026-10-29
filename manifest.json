@@ -2,12 +2,12 @@
   "name": "Matemáticas Avanzadas - Curso Completo",
   "short_name": "MateAvanzada",
   "description": "Curso profesional completo de matemáticas desde cero hasta nivel universitario avanzado. Incluye álgebra, trigonometría, cálculo, álgebra lineal y más. 100% interactivo, didáctico y gratuito.",
-  "start_url": "/Curso-completo-de-matematica-avanzada/",
+  "start_url": "/Curso-completo-de-matematica-avanzada-web/",
   "display": "standalone",
   "background_color": "#0a0f1a",
   "theme_color": "#0a0f1a",
   "orientation": "portrait-primary",
-  "scope": "/Curso-completo-de-matematica-avanzada/",
+  "scope": "/Curso-completo-de-matematica-avanzada-web/",
   "icons": [
     {
       "src": "assets/images/icon-72.png",
@@ -64,21 +64,21 @@
       "name": "Continuar aprendiendo",
       "short_name": "Continuar",
       "description": "Volver a tu último módulo",
-      "url": "/Curso-completo-de-matematica-avanzada/#dashboard",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#dashboard",
       "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Ver progreso",
       "short_name": "Progreso",
       "description": "Ver tu progreso global y certificados",
-      "url": "/Curso-completo-de-matematica-avanzada/#progress",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#progress",
       "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Repaso espaciado",
       "short_name": "Repaso",
       "description": "Revisar tarjetas pendientes",
-      "url": "/Curso-completo-de-matematica-avanzada/#review",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#review",
       "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
     }
   ],
