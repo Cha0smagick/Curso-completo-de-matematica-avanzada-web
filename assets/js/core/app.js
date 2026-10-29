@@ -6,9 +6,10 @@
 import { store } from './store.js';
 import { router } from './router.js';
 import { eventBus, EventTypes } from './events.js';
+import importedCurriculum from '../../data/curriculum.json';
 
 /* ==========================================================================
-   CURRICULUM DATA (se carga desde JSON)
+   CURRICULUM DATA (cargado desde JSON en build time)
    ========================================================================== */
 let curriculumData = null;
 
@@ -70,14 +71,12 @@ class App {
    * Cargar datos del currículo
    */
   async loadCurriculum() {
-    try {
-      const response = await fetch('/Curso-completo-de-matematica-avanzada-web/assets/data/curriculum.json');
-      if (!response.ok) throw new Error('No se pudo cargar el currículo');
-      curriculumData = await response.json();
-      console.log('[App] Currículo cargado:', curriculumData.phases.length, 'fases');
-    } catch (error) {
-      console.warn('[App] Usando currículo por defecto:', error);
+    curriculumData = importedCurriculum;
+    if (!curriculumData || !curriculumData.phases) {
+      console.warn('[App] Currículo importado vacío, usando por defecto');
       curriculumData = this.getDefaultCurriculum();
+    } else {
+      console.log('[App] Currículo cargado:', curriculumData.phases.length, 'fases');
     }
   }
   
