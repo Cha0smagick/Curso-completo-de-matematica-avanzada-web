@@ -41,7 +41,12 @@ class App {
       
       // 1. Cargar currículo
       console.log('[App] Step 1: loadCurriculum');
-      await this.loadCurriculum();
+      try {
+        await this.loadCurriculum();
+      } catch (currError) {
+        console.warn('[App] loadCurriculum failed:', currError.message);
+        curriculumData = this.getDefaultCurriculum();
+      }
       console.log('[App] Step 1 OK, phases:', curriculumData?.phases?.length);
       
       // DEBUG: Show success
@@ -57,9 +62,13 @@ class App {
       }
       console.log('[App] Step 2 OK');
       
-      // 3. Registrar rutas
+      // 3. Registrar rutas - con fallback
       console.log('[App] Step 3: registerRoutes');
-      this.registerRoutes();
+      try {
+        this.registerRoutes();
+      } catch (routesError) {
+        console.warn('[App] registerRoutes failed:', routesError.message);
+      }
       console.log('[App] Step 3 OK');
       
       // 4. Inicializar router - con fallback (disabled for debugging)
@@ -74,9 +83,13 @@ class App {
       }
       console.log('[App] Step 5 OK');
       
-      // 6. Configurar Service Worker updates
+      // 6. Configurar Service Worker updates - con fallback
       console.log('[App] Step 6: setupSWUpdates');
-      this.setupSWUpdates();
+      try {
+        this.setupSWUpdates();
+      } catch (swError) {
+        console.warn('[App] setupSWUpdates failed:', swError.message);
+      }
       console.log('[App] Step 6 OK');
       
       // 7. Verificar si hay onboarding pendiente - skipped for debugging
