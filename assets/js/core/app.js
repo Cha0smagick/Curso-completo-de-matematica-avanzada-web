@@ -49,10 +49,6 @@ class App {
       }
       console.log('[App] Step 1 OK, phases:', curriculumData?.phases?.length);
       
-      // DEBUG: Show success
-      const dbgMain = document.getElementById('main-content');
-      if (dbgMain) dbgMain.innerHTML = '<h1 style="color:white;padding:2rem;">OK - Curriculum loaded: ' + (curriculumData?.phases?.length || 0) + ' phases</h1>';
-      
       // 2. Inicializar store (carga IndexedDB) - con fallback
       console.log('[App] Step 2: store.init');
       try {
