@@ -324,15 +324,6 @@
   <!-- Scripts -->
   <script type="module" src="assets/js/core/app.js"></script>
   
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/Curso-completo-de-matematica-avanzada-web/sw.js')
-          .then(reg => console.log('SW registered:', reg.scope))
-          .catch(err => console.log('SW registration failed:', err));
-      });
-    }
-  </script>
+  <!-- Service Worker Registration (disabled - no SW generated) -->
 </body>
 </html>

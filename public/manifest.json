@@ -1,0 +1,110 @@
+{
+  "name": "Matemáticas Avanzadas - Curso Completo",
+  "short_name": "MateAvanzada",
+  "description": "Curso profesional completo de matemáticas desde cero hasta nivel universitario avanzado. Incluye álgebra, trigonometría, cálculo, álgebra lineal y más. 100% interactivo, didáctico y gratuito.",
+  "start_url": "/Curso-completo-de-matematica-avanzada-web/",
+  "display": "standalone",
+  "background_color": "#0a0f1a",
+  "theme_color": "#0a0f1a",
+  "orientation": "portrait-primary",
+  "scope": "/Curso-completo-de-matematica-avanzada-web/",
+  "icons": [
+    {
+      "src": "assets/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["education", "science", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Continuar aprendiendo",
+      "short_name": "Continuar",
+      "description": "Volver a tu último módulo",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#dashboard",
+      "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Ver progreso",
+      "short_name": "Progreso",
+      "description": "Ver tu progreso global y certificados",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#progress",
+      "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Repaso espaciado",
+      "short_name": "Repaso",
+      "description": "Revisar tarjetas pendientes",
+      "url": "/Curso-completo-de-matematica-avanzada-web/#review",
+      "icons": [{ "src": "assets/images/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-dashboard.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dashboard principal con progreso"
+    },
+    {
+      "src": "assets/images/screenshot-module.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vista de módulo con teoría interactiva"
+    },
+    {
+      "src": "assets/images/screenshot-quiz.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Quiz adaptativo con hints"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
