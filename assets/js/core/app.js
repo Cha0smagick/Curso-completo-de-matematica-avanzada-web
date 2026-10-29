@@ -71,7 +71,7 @@ class App {
    */
   async loadCurriculum() {
     try {
-      const response = await fetch('assets/data/curriculum.json');
+      const response = await fetch('/Curso-completo-de-matematica-avanzada-web/assets/data/curriculum.json');
       if (!response.ok) throw new Error('No se pudo cargar el currículo');
       curriculumData = await response.json();
       console.log('[App] Currículo cargado:', curriculumData.phases.length, 'fases');
