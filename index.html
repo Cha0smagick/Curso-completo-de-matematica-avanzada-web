@@ -324,6 +324,15 @@
   <!-- Scripts -->
   <script type="module" src="assets/js/core/app.js"></script>
   
-  <!-- Service Worker Registration (disabled - no SW generated) -->
+  <!-- Unregister any existing service workers -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
