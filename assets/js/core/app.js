@@ -70,7 +70,7 @@ class App {
       // 4. Inicializar router - con fallback
       console.log('[App] Step 4: router.start');
       try {
-        router.start();
+        await router.start();
       } catch (routerError) {
         console.warn('[App] Router start failed:', routerError.message);
       }
@@ -188,9 +188,9 @@ class App {
     router.on(Routes.HOME, async () => {
       const user = store.get('user');
       if (user.id) {
-        router.navigate(Routes.DASHBOARD, { replace: true });
+        await this.renderDashboard();
       } else {
-        router.navigate(Routes.ONBOARDING, { replace: true });
+        await this.renderOnboarding();
       }
     });
     
@@ -248,10 +248,10 @@ class App {
     const currentRoute = router.getCurrentRoute();
     
     if (!user.id && currentRoute?.route !== Routes.ONBOARDING && currentRoute?.route !== Routes.DIAGNOSTIC) {
-      // Usuario nuevo, redirigir a onboarding
-      router.navigate(Routes.ONBOARDING, { replace: true });
+      // Usuario nuevo, mostrar onboarding
+      await this.renderOnboarding();
     } else if (user.id && currentRoute?.route === Routes.HOME) {
-      router.navigate(Routes.DASHBOARD, { replace: true });
+      await this.renderDashboard();
     }
   }
   

@@ -206,12 +206,12 @@ export class Router {
   /**
    * Iniciar router
    */
-  start() {
+  async start() {
     window.addEventListener('hashchange', () => this.handleHashChange());
     window.addEventListener('popstate', () => this.handlePopState());
     
     // Manejar hash inicial
-    this.handleHashChange();
+    await this.handleHashChange();
   }
   
   /**
