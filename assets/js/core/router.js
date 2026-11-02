@@ -174,13 +174,40 @@ export class Router {
         const moduleId = to.params.moduleId;
         const progress = store.getModuleProgress(moduleId);
         
-        if (progress.status === 'locked') {
-          // Redirigir a vista previa o fase anterior
-          return Routes.PHASE_OVERVIEW.replace(':phaseId', this.getModulePhase(moduleId));
+        if (progress.status === 'locked' && moduleId !== 'm01') {
+          // Check if previous module is completed (unlock chain)
+          const prevModule = this.getPrevModuleId(moduleId);
+          if (prevModule) {
+            const prevProgress = store.getModuleProgress(prevModule);
+            if (prevProgress.status === 'completed' || prevProgress.status === 'mastery' || prevProgress.status === 'in-progress' || prevProgress.status === 'available') {
+              store.set(`progress.${moduleId}.status`, 'available');
+              return true;
+            }
+          }
+          // Seed first module as available
+          if (moduleId === 'm01') {
+            store.set('progress.m01.status', 'available');
+            return true;
+          }
+          // Redirect to dashboard instead of broken phase-overview
+          return Routes.DASHBOARD;
+        }
+        
+        // Seed first module as available if still locked
+        if (moduleId === 'm01' && progress.status === 'locked') {
+          store.set('progress.m01.status', 'available');
         }
       }
       return true;
     });
+  }
+  
+  getPrevModuleId(moduleId) {
+    const match = moduleId.match(/m(\d+)/);
+    if (!match) return null;
+    const num = parseInt(match[1]);
+    if (num <= 1) return null;
+    return `m${(num - 1).toString().padStart(2, '0')}`;
   }
   
   getModulePhase(moduleId) {

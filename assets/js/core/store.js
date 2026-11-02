@@ -285,6 +285,26 @@ export class Store {
         this.state.user.preferences = { ...this.state.user.preferences, ...settingsObj };
       }
       
+      // Seed first module as available if no progress exists
+      if (!this.state.progress['m01']) {
+        this.state.progress['m01'] = {
+          status: 'available',
+          startedAt: null,
+          completedAt: null,
+          masteryAt: null,
+          quizScore: 0,
+          quizAttempts: 0,
+          bestScore: 0,
+          timeSpent: 0,
+          sections: {
+            theory: { completed: false, timeSpent: 0 },
+            practice: { completed: false, timeSpent: 0 },
+            quiz: { completed: false, score: 0, attempts: 0 }
+          }
+        };
+        this.dirty = true;
+      }
+      
       // Aplicar preferencias
       this.applyPreferences();
       
