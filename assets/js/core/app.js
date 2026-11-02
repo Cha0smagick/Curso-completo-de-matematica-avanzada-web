@@ -874,13 +874,28 @@ class App {
     
     try {
       // Dynamic import del módulo de vista
-      // Use import.meta.glob for dynamic module loading
-    const modules = import.meta.glob('../../../modules/*/index.js');
-    const modulePath = `../../../modules/${viewName}/index.js`;
-    if (!modules[modulePath]) {
+    const viewModules = {
+      'dashboard': () => import('../../../modules/dashboard/index.js'),
+      'module': () => import('../../../modules/module/index.js'),
+      'phase': () => import('../../../modules/phase/index.js'),
+      'onboarding': () => import('../../../modules/onboarding/index.js'),
+      'progress': () => import('../../../modules/progress/index.js'),
+      'certificates': () => import('../../../modules/certificates/index.js'),
+      'review': () => import('../../../modules/review/index.js'),
+      'settings': () => import('../../../modules/settings/index.js'),
+      '404': () => import('../../../modules/404/index.js'),
+      'phase-overview': () => import('../../../modules/phase-overview/index.js'),
+      'certificate-view': () => import('../../../modules/certificate-view/index.js'),
+      'certificate-verify': () => import('../../../modules/certificate-verify/index.js'),
+      'review-session': () => import('../../../modules/review-session/index.js'),
+      'search': () => import('../../../modules/search/index.js'),
+      'diagnostic': () => import('../../../modules/diagnostic/index.js'),
+    };
+    const importFn = viewModules[viewName];
+    if (!importFn) {
       throw new Error(`Módulo ${viewName} no encontrado`);
     }
-    const viewModule = await modules[modulePath]();
+    const viewModule = await importFn();
       
       if (viewModule.default && typeof viewModule.default.render === 'function') {
         await viewModule.default.render(main, params, { store, router, eventBus, curriculum: curriculumData });
