@@ -324,8 +324,8 @@ export class Store {
       
       // Guardar usuario
       await tx.objectStore(STORES.USER).put({
-        id: 'current',
         ...this.state.user,
+        id: 'current',
         lastActiveAt: Date.now()
       });
       

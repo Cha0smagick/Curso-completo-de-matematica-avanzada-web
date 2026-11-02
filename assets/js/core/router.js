@@ -420,7 +420,8 @@ export class Router {
   }
 }
 
-// Instancia global
-export const router = new Router({ base: '/Curso-completo-de-matematica-avanzada-web/' });
+// Instancia global. Base vacío en localhost (dev de Vite), ruta de GitHub Pages en producción.
+const isGitHubPages = location.hostname.endsWith('.github.io');
+export const router = new Router({ base: isGitHubPages ? '/Curso-completo-de-matematica-avanzada-web/' : '' });
 
 export default router;

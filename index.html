@@ -324,13 +324,11 @@
   <!-- Scripts -->
   <script type="module" src="assets/js/core/app.js"></script>
   
-  <!-- Unregister any existing service workers -->
+  <!-- Registrar Service Worker (offline-first / PWA) -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for (let registration of registrations) {
-          registration.unregister();
-        }
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function(err) {
+        console.warn('[SW] Registro falló:', err);
       });
     }
   </script>

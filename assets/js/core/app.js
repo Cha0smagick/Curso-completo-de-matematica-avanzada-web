@@ -4,7 +4,7 @@
    ========================================================================== */
 
 import { store } from './store.js';
-import { router } from './router.js';
+import { router, Routes } from './router.js';
 import { eventBus, EventTypes } from './events.js';
 import importedCurriculum from '../../data/curriculum.json';
 import '../../css/variables.css';
