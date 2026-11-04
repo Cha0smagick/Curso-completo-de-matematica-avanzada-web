@@ -149,7 +149,9 @@ export class Router {
     addGuard(async (to) => {
       const protectedRoutes = [
         Routes.DASHBOARD, Routes.PROGRESS, Routes.CERTIFICATES,
-        Routes.REVIEW, Routes.SETTINGS, Routes.MODULE, Routes.PHASE
+        Routes.REVIEW, Routes.REVIEW_SESSION, Routes.SETTINGS, Routes.MODULE, Routes.PHASE,
+        Routes.MODULE_THEORY, Routes.MODULE_PRACTICE, Routes.MODULE_QUIZ,
+        Routes.MODULE_INTERACTIVE, Routes.MODULE_SUMMARY
       ];
       
       if (protectedRoutes.includes(to.route)) {
@@ -163,40 +165,34 @@ export class Router {
       return true;
     });
     
-    // Guard: Verificar prerrequisitos de módulo
+    // Guard: prerrequisitos de módulo (cadena estricta: el anterior debe estar
+    // completed o mastery — antes cualquier estado distinto de locked desbloqueaba todo)
     addGuard(async (to) => {
       if (to.route === Routes.MODULE || 
           to.route === Routes.MODULE_THEORY ||
           to.route === Routes.MODULE_PRACTICE ||
           to.route === Routes.MODULE_QUIZ ||
-          to.route === Routes.MODULE_INTERACTIVE) {
+          to.route === Routes.MODULE_INTERACTIVE ||
+          to.route === Routes.MODULE_SUMMARY) {
         
         const moduleId = to.params.moduleId;
+        
+        // El primer módulo siempre está accesible
+        if (moduleId === 'm01') return true;
+        
         const progress = store.getModuleProgress(moduleId);
+        if (progress.status !== 'locked') return true;
         
-        if (progress.status === 'locked' && moduleId !== 'm01') {
-          // Check if previous module is completed (unlock chain)
-          const prevModule = this.getPrevModuleId(moduleId);
-          if (prevModule) {
-            const prevProgress = store.getModuleProgress(prevModule);
-            if (prevProgress.status === 'completed' || prevProgress.status === 'mastery' || prevProgress.status === 'in-progress' || prevProgress.status === 'available') {
-              store.set(`progress.${moduleId}.status`, 'available');
-              return true;
-            }
-          }
-          // Seed first module as available
-          if (moduleId === 'm01') {
-            store.set('progress.m01.status', 'available');
-            return true;
-          }
-          // Redirect to dashboard instead of broken phase-overview
-          return Routes.DASHBOARD;
+        const prevModule = this.getPrevModuleId(moduleId);
+        const prevProgress = prevModule ? store.getModuleProgress(prevModule) : null;
+        
+        if (prevProgress && (prevProgress.status === 'completed' || prevProgress.status === 'mastery')) {
+          store.set(`progress.${moduleId}.status`, 'available');
+          return true;
         }
         
-        // Seed first module as available if still locked
-        if (moduleId === 'm01' && progress.status === 'locked') {
-          store.set('progress.m01.status', 'available');
-        }
+        // Bloqueado: al dashboard
+        return Routes.DASHBOARD;
       }
       return true;
     });
@@ -258,22 +254,9 @@ export class Router {
     this.isNavigating = true;
     
     try {
-      // Ejecutar guards
-      const toRoute = matchRoute(targetPath);
-      const guardResult = await runGuards(toRoute, from);
-      
-      if (guardResult === false) {
-        this.isNavigating = false;
-        return false;
-      }
-      
-      if (typeof guardResult === 'string') {
-        // Redirect
-        return this.navigate(guardResult, { replace: true });
-      }
-      
-      // Actualizar hash
-      const hash = this.base + targetPath;
+      // Router 100% hash: pushState con '#path' (nunca con path de base, que rompía
+      // atrás/adelante y generaba dobles barras en GitHub Pages)
+      const hash = `#${targetPath}`;
       
       if (options.replace) {
         history.replaceState(null, '', hash);
@@ -281,8 +264,8 @@ export class Router {
         history.pushState(null, '', hash);
       }
       
-      // Procesar nueva ruta
-      await this.processRoute(toRoute, from);
+      // Los guards corren dentro de processRoute (así también aplican a anchors y popstate)
+      await this.processRoute(matchRoute(targetPath), from);
       
       return true;
     } catch (error) {
@@ -328,7 +311,24 @@ export class Router {
   /**
    * Procesar ruta y ejecutar handler
    */
-  async processRoute(route, from, isPopState = false) {
+  async processRoute(route, from, isPopState = false, redirectDepth = 0) {
+    // Guards: también aplican a navegación por anchor (`href="#..."`) y popstate,
+    // no solo a navigate() — antes se saltaban por completo en esos caminos
+    if (redirectDepth < 5) {
+      const guardResult = await runGuards(route, from);
+      
+      if (guardResult === false) {
+        this.isNavigating = false;
+        return false;
+      }
+      
+      if (typeof guardResult === 'string') {
+        if (guardResult === route.path) return false; // evita bucle de redirect
+        history.replaceState(null, '', `#${guardResult}`);
+        return this.processRoute(matchRoute(guardResult), from, isPopState, redirectDepth + 1);
+      }
+    }
+    
     const previousRoute = this.currentRoute;
     this.currentRoute = route;
     this.previousRoute = previousRoute;
@@ -416,12 +416,11 @@ export class Router {
     for (const [key, value] of Object.entries(params)) {
       path = path.replace(`:${key}`, value);
     }
-    return `${window.location.origin}${this.base}#${path}`;
+    return `${window.location.origin}${window.location.pathname}#${path}`;
   }
 }
 
-// Instancia global. Base vacío en localhost (dev de Vite), ruta de GitHub Pages en producción.
-const isGitHubPages = location.hostname.endsWith('.github.io');
-export const router = new Router({ base: isGitHubPages ? '/Curso-completo-de-matematica-avanzada-web/' : '' });
+// Instancia global. Router 100% hash: no necesita base (el hash vive sobre cualquier pathname).
+export const router = new Router();
 
 export default router;
