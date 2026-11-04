@@ -1,5 +1,29 @@
 // modules/module/index.js
-// Module view - shows module content with tabs
+// Module view - shows module content with tabs.
+// Si el módulo tiene página de contenido (modules/mXX/index.html) extrae sus secciones
+// reales; si no, muestra placeholders honestos.
+
+const contentCache = new Map();
+
+async function loadModuleContent(moduleId) {
+  if (contentCache.has(moduleId)) return contentCache.get(moduleId);
+  try {
+    const base = import.meta.env.BASE_URL || '/';
+    const res = await fetch(`${base}modules/${moduleId}/index.html`);
+    if (!res.ok) { contentCache.set(moduleId, null); return null; }
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const pick = (name) => doc.getElementById(`section-${name}`)?.innerHTML || '';
+    const theory = pick('theory');
+    // Sin teoría no consideramos que el módulo tenga contenido
+    const content = theory ? { theory, practice: pick('practice'), quiz: pick('quiz'), interactive: pick('interactive') } : null;
+    contentCache.set(moduleId, content);
+    return content;
+  } catch {
+    contentCache.set(moduleId, null);
+    return null;
+  }
+}
 
 export default {
   async render(container, params, { store, router, eventBus, curriculum }) {
@@ -35,6 +59,7 @@ export default {
       store.startModule(moduleId);
     }
     
+    const content = await loadModuleContent(moduleId);
     const sections = moduleData.sections || ['theory', 'practice', 'quiz', 'interactive'];
     const sectionLabels = {
       overview: 'Resumen',
@@ -43,6 +68,13 @@ export default {
       quiz: 'Quiz',
       interactive: 'Interactivo',
       summary: 'Resumen'
+    };
+    
+    const renderSection = (name) => {
+      if (section !== name) return '';
+      if (name === 'overview') return this.renderOverview(moduleData, progress);
+      if (content && content[name]) return content[name];
+      return this.renderPlaceholder(name, moduleData);
     };
     
     container.innerHTML = `
@@ -71,7 +103,7 @@ export default {
         <!-- Tabs -->
         <div class="tabs mb-6" role="tablist">
           ${sections.map(s => `
-            <button class="tab ${s === section ? 'active' : ''}" role="tab" data-section="${s}" aria-selected="${s === section}">
+            <button class="tab ${s === section ? 'active' : ''}" role="tab" id="tab-${s}" data-section="${s}" aria-selected="${s === section}" aria-controls="module-content">
               ${sectionLabels[s] || s}
             </button>
           `).join('')}
@@ -79,11 +111,11 @@ export default {
         
         <!-- Content Area -->
         <div id="module-content" class="tab-panel active">
-          ${section === 'overview' ? this.renderOverview(moduleData, progress) : ''}
-          ${section === 'theory' ? this.renderTheoryPlaceholder(moduleData) : ''}
-          ${section === 'practice' ? this.renderPracticePlaceholder(moduleData) : ''}
-          ${section === 'quiz' ? this.renderQuizPlaceholder(moduleData) : ''}
-          ${section === 'interactive' ? this.renderInteractivePlaceholder(moduleData) : ''}
+          ${renderSection('overview')}
+          ${renderSection('theory')}
+          ${renderSection('practice')}
+          ${renderSection('quiz')}
+          ${renderSection('interactive')}
         </div>
         
         <!-- Module Navigation -->
@@ -154,54 +186,30 @@ export default {
     `;
   },
   
-  renderTheoryPlaceholder(moduleData) {
+  renderPlaceholder(section, moduleData) {
+    const icons = { theory: '📖', practice: '✏️', quiz: '📝', interactive: '🎮' };
+    const titles = {
+      theory: 'Teoría',
+      practice: 'Práctica',
+      quiz: 'Quiz',
+      interactive: 'Interactivo'
+    };
+    const messages = {
+      theory: 'El contenido teórico de este módulo está en preparación.',
+      practice: 'Los ejercicios guiados de este módulo están en preparación.',
+      quiz: 'El quiz adaptativo de este módulo está en preparación.',
+      interactive: 'Las gráficas interactivas de este módulo están en preparación.'
+    };
     return `
       <div class="theory-section">
         <div class="card p-8 text-center">
-          <div class="text-5xl mb-4">📖</div>
-          <h2 class="text-2xl font-bold mb-2">Teoría: ${moduleData.title}</h2>
-          <p class="text-muted mb-6">El contenido teórico completo de este módulo estará disponible pronto.</p>
-          <p class="text-sm text-muted">Mientras tanto, puedes explorar el módulo 1 que ya tiene contenido completo:</p>
-          <a href="#module/m01" class="btn btn-primary mt-4">Ir al Módulo 1</a>
-        </div>
-      </div>
-    `;
-  },
-  
-  renderPracticePlaceholder(moduleData) {
-    return `
-      <div class="theory-section">
-        <div class="card p-8 text-center">
-          <div class="text-5xl mb-4">✏️</div>
-          <h2 class="text-2xl font-bold mb-2">Práctica: ${moduleData.title}</h2>
-          <p class="text-muted mb-6">Los ejercicios guiados de este módulo estarán disponibles pronto.</p>
-          <a href="#module/m01" class="btn btn-primary mt-4">Ir al Módulo 1</a>
-        </div>
-      </div>
-    `;
-  },
-  
-  renderQuizPlaceholder(moduleData) {
-    return `
-      <div class="theory-section">
-        <div class="card p-8 text-center">
-          <div class="text-5xl mb-4">📝</div>
-          <h2 class="text-2xl font-bold mb-2">Quiz: ${moduleData.title}</h2>
-          <p class="text-muted mb-6">El quiz adaptativo de este módulo estará disponible pronto.</p>
-          <a href="#module/m01" class="btn btn-primary mt-4">Ir al Módulo 1</a>
-        </div>
-      </div>
-    `;
-  },
-  
-  renderInteractivePlaceholder(moduleData) {
-    return `
-      <div class="theory-section">
-        <div class="card p-8 text-center">
-          <div class="text-5xl mb-4">🎮</div>
-          <h2 class="text-2xl font-bold mb-2">Interactivo: ${moduleData.title}</h2>
-          <p class="text-muted mb-6">Las gráficas interactivas de este módulo estarán disponibles pronto.</p>
-          <a href="#module/m01" class="btn btn-primary mt-4">Ir al Módulo 1</a>
+          <div class="text-5xl mb-4">${icons[section] || '📘'}</div>
+          <h2 class="text-2xl font-bold mb-2">${titles[section] || 'Contenido'}: ${moduleData.title}</h2>
+          <p class="text-muted mb-6">${messages[section] || 'Disponible pronto.'}</p>
+          ${moduleData.id !== 'm01' ? `
+            <p class="text-sm text-muted">Mientras tanto, el Módulo 1 ya tiene contenido completo:</p>
+            <a href="#module/m01" class="btn btn-primary mt-4">Ir al Módulo 1</a>
+          ` : ''}
         </div>
       </div>
     `;

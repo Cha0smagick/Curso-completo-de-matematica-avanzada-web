@@ -30,10 +30,10 @@
         </a>
         <nav class="flex-1 flex justify-center" aria-label="Navegación del módulo">
           <div class="tabs" role="tablist">
-            <button class="tab active" role="tab" data-section="theory" aria-selected="true">Teoría</button>
-            <button class="tab" role="tab" data-section="practice" aria-selected="false">Práctica</button>
-            <button class="tab" role="tab" data-section="quiz" aria-selected="false">Quiz</button>
-            <button class="tab" role="tab" data-section="interactive" aria-selected="false">Interactivo</button>
+            <button class="tab active" role="tab" id="tab-theory" data-section="theory" aria-selected="true" aria-controls="section-theory">Teoría</button>
+            <button class="tab" role="tab" id="tab-practice" data-section="practice" aria-selected="false" aria-controls="section-practice">Práctica</button>
+            <button class="tab" role="tab" id="tab-quiz" data-section="quiz" aria-selected="false" aria-controls="section-quiz">Quiz</button>
+            <button class="tab" role="tab" id="tab-interactive" data-section="interactive" aria-selected="false" aria-controls="section-interactive">Interactivo</button>
           </div>
         </nav>
       </div>
@@ -341,11 +341,22 @@
               <div class="practice-card-body">
                 <p class="practice-question">Mira cada grupo durante <strong>1 segundo</strong> y di cuántos elementos hay <strong>sin contar</strong>.</p>
                 
-                <div class="grid grid-cols-4 gap-3 mt-4" id="subitizing-groups">
-                  <!-- Se generan dinámicamente -->
+                <div class="practice-hints mt-4">
+                  <div class="practice-hint">
+                    <span class="practice-hint-icon">💡</span>
+                    <div class="practice-hint-content">
+                      <span class="practice-hint-level">Pista 1</span>
+                      Observa el grupo durante un instante y descomponlo en subgrupos de 3, 4 o 5
+                    </div>
+                  </div>
+                  <div class="practice-hint">
+                    <span class="practice-hint-icon">💡</span>
+                    <div class="practice-hint-content">
+                      <span class="practice-hint-level">Pista 2</span>
+                      El último número que digas es la cardinalidad del conjunto
+                    </div>
+                  </div>
                 </div>
-
-                <button class="btn btn-primary mt-4" id="btn-new-subitizing">Nuevo grupo</button>
               </div>
             </div>
           </div>
@@ -368,8 +379,8 @@
                 </div>
               </div>
               <div class="practice-card-body">
-                <p class="practice-question">Ubica los siguientes números en la recta numérica interactiva:</p>
-                
+                <p class="practice-question">Explora la recta numérica interactiva y observa cómo cada número ocupa una posición única:</p>
+
                 <interactive-graph
                   type="function"
                   data='{"functions":[{"expr":"0","color":"transparent","label":""}],"range":[-10,10]}'
@@ -378,14 +389,6 @@
                   height="250px"
                   id="number-line-practice">
                 </interactive-graph>
-                
-                <div class="grid grid-cols-5 gap-2 mt-4">
-                  <button class="btn btn-secondary btn-sm" data-value="-7">-7</button>
-                  <button class="btn btn-secondary btn-sm" data-value="-3">-3</button>
-                  <button class="btn btn-secondary btn-sm" data-value="0">0</button>
-                  <button class="btn btn-secondary btn-sm" data-value="4">4</button>
-                  <button class="btn btn-secondary btn-sm" data-value="8">8</button>
-                </div>
 
                 <div class="practice-hints mt-4">
                   <div class="practice-hint">
@@ -400,8 +403,6 @@
             </div>
           </div>
         </section>
-
-        <!-- Section: Quiz -->
         <section id="section-quiz" class="tab-panel scroll-reveal" role="tabpanel" aria-labelledby="tab-quiz" hidden>
           <quiz-card 
             mode="learning"
@@ -471,7 +472,7 @@
             </svg>
             Módulo anterior
           </button>
-          <a href="../m02/index.html" class="btn btn-primary">
+          <a href="../../#module/m02" class="btn btn-primary">
             Siguiente módulo
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="9 18 15 12 9 6"></polyline>
