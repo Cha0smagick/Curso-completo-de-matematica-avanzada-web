@@ -4,6 +4,9 @@
    ========================================================================== */
 
 import { renderToString } from 'katex';
+// CSS de KaTeX: en Shadow DOM no aplica el CSS del documento, hay que inyectarlo dentro.
+// `?inline` devuelve el CSS como string (Vite); en tests puede venir vacío y se tolera.
+import katexCss from 'katex/dist/katex.min.css?inline';
 
 /* ==========================================================================
    KATEX RENDERER CON CACHE
@@ -15,7 +18,7 @@ const katexOptions = {
   strict: false,
   trust: true,
   output: 'html',
-  macro: {
+  macros: {
     '\\R': '\\mathbb{R}',
     '\\N': '\\mathbb{N}',
     '\\Z': '\\mathbb{Z}',
@@ -44,7 +47,8 @@ function renderLatex(latex, displayMode = false) {
     return html;
   } catch (error) {
     console.warn('[MathFormula] KaTeX error:', error.message, latex);
-    return `<span class="katex-error" title="${error.message}">${latex}</span>`;
+    const esc = (s) => String(s).replace(/[&<>"]/g, (ch) => ({ '&': '&' + 'amp;', '<': '&' + 'lt;', '>': '&' + 'gt;', '"': '&' + 'quot;' }[ch]));
+    return `<span class="katex-error" title="${esc(error.message)}">${esc(latex)}</span>`;
   }
 }
 
@@ -212,6 +216,7 @@ export class MathFormula extends HTMLElement {
     const isError = html.includes('katex-error');
     
     this.shadowRoot.innerHTML = `
+      <style>${katexCss || ''}</style>
       <style>
         :host {
           display: ${this.displayMode ? 'block' : 'inline-block'};
@@ -486,9 +491,9 @@ export class MathFormula extends HTMLElement {
   }
   
   escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    // Escapa también comillas: este resultado va dentro de atributos HTML
+    const map = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": '#39' };
+    return String(text ?? '').replace(/[&<>"']/g, (ch) => `&${map[ch]};`);
   }
 }
 
