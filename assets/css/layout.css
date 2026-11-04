@@ -609,3 +609,47 @@
     page-break-inside: avoid;
   }
 }
+
+/* ==========================================================================
+   UTILIDADES (clases que el HTML usa y antes no existían — auditoría P1-1)
+   ========================================================================== */
+
+/* Display responsivo */
+@media (min-width: 640px) {
+  .sm\:flex { display: flex; }
+}
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+}
+
+/* Espaciado vertical entre hijos */
+.space-y-1 > * + * { margin-top: 0.25rem; }
+.space-y-2 > * + * { margin-top: 0.5rem; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+
+/* Tamaños y tipografía usados en hero/estados de error */
+.w-10 { width: 2.5rem; }
+.h-10 { height: 2.5rem; }
+.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+.text-5xl { font-size: 3rem; line-height: 1.1; }
+.text-6xl { font-size: 3.75rem; line-height: 1.1; }
+
+/* Layout auxiliares */
+.min-w-0 { min-width: 0; }
+.max-w-md { max-width: 28rem; }
+.mt-10 { margin-top: 2.5rem; }
+.ml-3 { margin-left: 0.75rem; }
+
+/* Superficies */
+.bg-bg-elevated { background: var(--color-bg-elevated); }
+.bg-black\/50 { background: rgba(0, 0, 0, 0.5); }
+.border-border { border-color: var(--color-border); }
+.top-20 { top: 5rem; }
+.left-4 { left: 1rem; }
+.right-4 { right: 1rem; }
+.z-modal-backdrop { z-index: calc(var(--z-modal) - 1); }
+
+/* Enlaces */
+.text-decoration-none { text-decoration: none; }
+.hover\:text-primary { transition: color var(--transition-fast); }
+.hover\:text-primary:hover { color: var(--brand-primary); }
