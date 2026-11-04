@@ -56,6 +56,10 @@ class App {
       }
       console.log('[App] Step 1 OK, phases:', curriculumData?.phases?.length);
       
+      // 1b. Inyectar el total real de módulos para métricas globales honestas
+      const totalModules = (curriculumData.phases || []).reduce((n, p) => n + (p.modules?.length || 0), 0);
+      store.setCourseTotal(totalModules);
+      
       // 2. Inicializar store (carga IndexedDB) - con fallback
       console.log('[App] Step 2: store.init');
       try {
@@ -782,10 +786,10 @@ class App {
    * Cerrar sesión
    */
   async logout() {
-    if (confirm('¿Seguro que quieres cerrar sesión? Tu progreso se guardará localmente.')) {
-      await store.clearAll();
+    if (confirm('¿Cerrar sesión? Tu progreso queda guardado en este navegador.')) {
+      await store.logoutUser();
       router.navigate(Routes.ONBOARDING, { replace: true });
-      this.showToast({ type: 'info', message: 'Sesión cerrada. ¡Hasta pronto!' });
+      this.showToast({ type: 'info', message: 'Sesión cerrada. Tu progreso sigue guardado.' });
     }
   }
   
