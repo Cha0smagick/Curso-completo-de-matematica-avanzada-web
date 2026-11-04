@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cha0smagick.github.io/Curso-completo-de-matematica-avanzada-web/sitemap.xml
