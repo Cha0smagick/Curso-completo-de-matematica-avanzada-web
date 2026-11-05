@@ -13,7 +13,8 @@ const cache = new Map();
 // Usar new URL(..., import.meta.url) para rutas absolutas correctas desde cualquier ubicación.
 const MODULE_CONTENT_IMPORTS = {
   'm02': () => import(new URL('../../modules/m02/content.js', import.meta.url).href),
-  'm03': () => import(new URL('../../modules/m03/content.js', import.meta.url).href)
+  'm03': () => import(new URL('../../modules/m03/content.js', import.meta.url).href),
+  'm04': () => import(new URL('../../modules/m04/content.js', import.meta.url).href)
 };
 
 /**
