@@ -7,6 +7,7 @@ import { renderToString } from 'katex';
 // CSS de KaTeX: en Shadow DOM no aplica el CSS del documento, hay que inyectarlo dentro.
 // `?inline` devuelve el CSS como string (Vite); en tests puede venir vacío y se tolera.
 import katexCss from 'katex/dist/katex.min.css?inline';
+import { GLYPH_EXPLANATIONS } from './math-symbols.js';
 
 /* ==========================================================================
    KATEX RENDERER CON CACHE
@@ -52,56 +53,9 @@ function renderLatex(latex, displayMode = false) {
   }
 }
 
-/* ==========================================================================
-   GLYPH EXPLANATIONS - mapea el CARACTER renderizado por KaTeX a su explicacion.
-   (La v1 buscaba el comando LaTeX como substring del HTML: 'in' aparecia en
-   media clase CSS y los tooltips eran falsos positivos constantes.)
-   ========================================================================== */
-export const GLYPH_EXPLANATIONS = {
-  '∑': { latex: '\\sum', name: 'Sumatoria', desc: 'Suma de una sucesión de términos', example: '\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}' },
-  '∏': { latex: '\\prod', name: 'Productoria', desc: 'Producto de una sucesión de factores', example: '\\prod_{i=1}^{n} i = n!' },
-  '∫': { latex: '\\int', name: 'Integral', desc: 'Integral definida o indefinida', example: '\\int_0^1 x^2 \, dx = \\frac{1}{3}' },
-  '∮': { latex: '\\oint', name: 'Integral de contorno', desc: 'Integral sobre una curva cerrada', example: '\\oint_C \\mathbf{F} \\cdot d\\mathbf{r}' },
-  '∂': { latex: '\\partial', name: 'Derivada parcial', desc: 'Derivada respecto a una variable manteniendo otras constantes', example: '\\frac{\\partial f}{\\partial x}' },
-  '∇': { latex: '\\nabla', name: 'Nabla/Gradiente', desc: 'Vector de derivadas parciales', example: '\\nabla f' },
-  '∞': { latex: '\\infty', name: 'Infinito', desc: 'Cantidad sin límite', example: '\\int_0^{\\infty} e^{-x} \, dx = 1' },
-  'α': { latex: '\\alpha', name: 'Alfa', desc: 'Ángulo, coeficiente, nivel de significancia', example: '\\alpha = 0.05' },
-  'β': { latex: '\\beta', name: 'Beta', desc: 'Coeficiente, parámetro de distribución', example: '\\beta = 2' },
-  'γ': { latex: '\\gamma', name: 'Gamma', desc: 'Parámetro, función gamma', example: '\\gamma = 3' },
-  'δ': { latex: '\\delta', name: 'Delta', desc: 'Cambio, diferencial, delta de Dirac', example: '\\delta x = x_2 - x_1' },
-  'ϵ': { latex: '\\epsilon', name: 'Épsilon', desc: 'Número positivo arbitrariamente pequeño', example: '\\epsilon > 0' },
-  'θ': { latex: '\\theta', name: 'Theta', desc: 'Ángulo, parámetro', example: '\\theta = \\frac{\\pi}{4}' },
-  'λ': { latex: '\\lambda', name: 'Lambda', desc: 'Valor propio, parámetro de tasa', example: 'A\\mathbf{v} = \\lambda\\mathbf{v}' },
-  'μ': { latex: '\\mu', name: 'Mu', desc: 'Media, parámetro de distribución', example: '\\mu = \\frac{1}{n}' },
-  'σ': { latex: '\\sigma', name: 'Sigma', desc: 'Desviación estándar, sumatoria', example: '\\sigma^2' },
-  'π': { latex: '\\pi', name: 'Pi', desc: 'Constante 3.14159..., producto', example: '\\pi \\approx 3.14159' },
-  'ϕ': { latex: '\\phi', name: 'Phi', desc: 'Ángulo, número áureo', example: '\\phi = \\frac{1+\\sqrt{5}}{2}' },
-  'ω': { latex: '\\omega', name: 'Omega', desc: 'Frecuencia angular, espacio muestral', example: '\\omega = 2\\pi f' },
-  '≤': { latex: '\\leq', name: 'Menor o igual', desc: 'Relación de orden', example: 'x \\leq 5' },
-  '≥': { latex: '\\geq', name: 'Mayor o igual', desc: 'Relación de orden', example: 'x \\geq 0' },
-  '≠': { latex: '\\neq', name: 'Distinto', desc: 'Desigualdad', example: 'x \\neq 0' },
-  '≈': { latex: '\\approx', name: 'Aproximadamente igual', desc: 'Igualdad aproximada', example: '\\pi \\approx 3.14' },
-  '≡': { latex: '\\equiv', name: 'Equivalente/Idéntico', desc: 'Identidad, congruencia', example: 'a \\equiv b' },
-  '∝': { latex: '\\propto', name: 'Proporcional a', desc: 'Proporcionalidad directa', example: 'y \\propto x' },
-  '∈': { latex: '\\in', name: 'Pertenece a', desc: 'Pertenencia a conjunto', example: 'x \\in \\mathbb{R}' },
-  '∉': { latex: '\\notin', name: 'No pertenece a', desc: 'No pertenencia a conjunto', example: 'x \\notin \\mathbb{Z}' },
-  '⊂': { latex: '\\subset', name: 'Subconjunto propio', desc: 'Subconjunto estricto', example: 'A \\subset B' },
-  '⊆': { latex: '\\subseteq', name: 'Subconjunto', desc: 'Subconjunto (puede ser igual)', example: 'A \\subseteq B' },
-  '∪': { latex: '\\cup', name: 'Unión', desc: 'Unión de conjuntos', example: 'A \\cup B' },
-  '∩': { latex: '\\cap', name: 'Intersección', desc: 'Intersección de conjuntos', example: 'A \\cap B' },
-  '∅': { latex: '\\emptyset', name: 'Conjunto vacío', desc: 'Conjunto sin elementos', example: 'A \\cap B = \\emptyset' },
-  '∀': { latex: '\\forall', name: 'Para todo', desc: 'Cuantificador universal', example: '\\forall x \\in \\mathbb{R}' },
-  '∃': { latex: '\\exists', name: 'Existe', desc: 'Cuantificador existencial', example: '\\exists x' },
-  '⇒': { latex: '\\Rightarrow', name: 'Implica', desc: 'Implicación lógica', example: 'P \\Rightarrow Q' },
-  '⇔': { latex: '\\Leftrightarrow', name: 'Equivale', desc: 'Equivalencia lógica', example: 'P \\Leftrightarrow Q' },
-  '→': { latex: '\\to', name: 'Tiende a', desc: 'Límite, aplicación', example: 'x \\to 0' },
-  '↦': { latex: '\\mapsto', name: 'Mapea a', desc: 'Aplicación elemento a elemento', example: 'x \\mapsto x^2' },
-  '⋅': { latex: '\\cdot', name: 'Producto punto', desc: 'Multiplicación, producto escalar', example: '\\mathbf{a} \\cdot \\mathbf{b}' },
-  '×': { latex: '\\times', name: 'Producto cruz', desc: 'Producto vectorial, producto cartesiano', example: '\\mathbf{a} \\times \\mathbf{b}' },
-  '∘': { latex: '\\circ', name: 'Composición', desc: 'Composición de funciones', example: '(f \\circ g)(x)' },
-  '±': { latex: '\\pm', name: 'Más/menos', desc: 'Más o menos', example: 'x = \\pm 2' },
-  '∓': { latex: '\\mp', name: 'Menos/más', desc: 'Menos o más (opuesto a ±)', example: 'x \\mp 2' }
-};
+/* Símbolos: importados del módulo compartido math-symbols.js */
+
+;
 
 /* ==========================================================================
    MATH-FORMULA WEB COMPONENT

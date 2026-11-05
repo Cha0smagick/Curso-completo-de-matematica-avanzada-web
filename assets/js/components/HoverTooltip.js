@@ -4,6 +4,7 @@
    ========================================================================== */
 
 import { computePosition, flip, shift, offset, autoUpdate } from '@floating-ui/dom';
+import { LATEX_COMMANDS } from './math-symbols.js';
 
 /* ==========================================================================
    HOVER-TOOLTIP WEB COMPONENT
@@ -347,12 +348,16 @@ export class HoverTooltip extends HTMLElement {
   
   getMathFormulaContent(target) {
     const latex = target.getAttribute('latex') || '';
-    // Buscar símbolos explicables en la fórmula
+    // Buscar comandos LaTeX explicables en la fórmula (word boundaries: solo comandos completos)
     const explanations = [];
-    
-    for (const [symbol, info] of Object.entries(SYMBOL_EXPLANATIONS)) {
-      if (latex.includes(symbol)) {
-        explanations.push({ symbol, ...info });
+    const commandRegex = /\\(\w+)/g;
+    let match;
+    const seen = new Set();
+    while ((match = commandRegex.exec(latex)) !== null) {
+      const cmd = match[1];
+      if (!seen.has(cmd) && LATEX_COMMANDS[cmd]) {
+        explanations.push({ symbol: '\\' + cmd, ...LATEX_COMMANDS[cmd] });
+        seen.add(cmd);
       }
     }
     

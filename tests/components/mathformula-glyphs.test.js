@@ -4,7 +4,7 @@
 // asignado, este test lo canta).
 import { describe, it, expect } from 'vitest';
 import { renderToString } from 'katex';
-import { GLYPH_EXPLANATIONS } from '../../assets/js/components/MathFormula.js';
+import { GLYPH_EXPLANATIONS } from '../../assets/js/components/math-symbols.js';
 
 describe('GLYPH_EXPLANATIONS', () => {
   it('cada ejemplo renderiza y contiene su glifo', () => {
