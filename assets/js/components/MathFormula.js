@@ -53,102 +53,54 @@ function renderLatex(latex, displayMode = false) {
 }
 
 /* ==========================================================================
-   SYMBOL EXPLANATIONS DATABASE
+   GLYPH EXPLANATIONS - mapea el CARACTER renderizado por KaTeX a su explicacion.
+   (La v1 buscaba el comando LaTeX como substring del HTML: 'in' aparecia en
+   media clase CSS y los tooltips eran falsos positivos constantes.)
    ========================================================================== */
-const SYMBOL_EXPLANATIONS = {
-  '\\sum': { name: 'Sumatoria', desc: 'Suma de una sucesión de términos', example: '\\sum_{i=1}^n i = \\frac{n(n+1)}{2}' },
-  '\\prod': { name: 'Productoria', desc: 'Producto de una sucesión de factores', example: '\\prod_{i=1}^n i = n!' },
-  '\\int': { name: 'Integral', desc: 'Integral definida o indefinida', example: '\\int_a^b f(x)\\,dx' },
-  '\\oint': { name: 'Integral de contorno', desc: 'Integral sobre una curva cerrada', example: '\\oint_C \\mathbf{F}\\cdot d\\mathbf{r}' },
-  '\\partial': { name: 'Derivada parcial', desc: 'Derivada respecto a una variable manteniendo otras constantes', example: '\\frac{\\partial f}{\\partial x}' },
-  '\\nabla': { name: 'Nabla/Gradiente', desc: 'Vector de derivadas parciales', example: '\\nabla f = (\\frac{\\partial f}{\\partial x}, \\frac{\\partial f}{\\partial y})' },
-  '\\lim': { name: 'Límite', desc: 'Valor al que tiende una función', example: '\\lim_{x\\to a} f(x)' },
-  '\\infty': { name: 'Infinito', desc: 'Cantidad sin límite', example: '\\int_0^\\infty e^{-x}\\,dx = 1' },
-  '\\alpha': { name: 'Alfa', desc: 'Ángulo, coeficiente, nivel de significancia', example: '\\alpha = 0.05' },
-  '\\beta': { name: 'Beta', desc: 'Coeficiente, parámetro de distribución', example: '\\beta \\sim \\text{Beta}(2,3)' },
-  '\\gamma': { name: 'Gamma', desc: 'Constante de Euler-Mascheroni, función gamma', example: '\\Gamma(n) = (n-1)!' },
-  '\\delta': { name: 'Delta', desc: 'Cambio, diferencial, delta de Dirac', example: '\\delta x = x_2 - x_1' },
-  '\\epsilon': { name: 'Épsilon', desc: 'Número positivo arbitrariamente pequeño', example: '\\forall \\epsilon > 0' },
-  '\\theta': { name: 'Theta', desc: 'Ángulo, parámetro', example: '\\theta = \\frac{\\pi}{4}' },
-  '\\lambda': { name: 'Lambda', desc: 'Valor propio, parámetro de tasa', example: 'A\\mathbf{v} = \\lambda\\mathbf{v}' },
-  '\\mu': { name: 'Mu', desc: 'Media, parámetro de distribución', example: '\\mu = \\frac{1}{n}\\sum x_i' },
-  '\\sigma': { name: 'Sigma', desc: 'Desviación estándar, sumatoria', example: '\\sigma = \\sqrt{\\frac{1}{n}\\sum(x_i-\\mu)^2}' },
-  '\\pi': { name: 'Pi', desc: 'Constante 3.14159..., producto', example: '\\pi \\approx 3.14159' },
-  '\\phi': { name: 'Phi', desc: 'Ángulo, función phi de Euler, número áureo', example: '\\phi = \\frac{1+\\sqrt{5}}{2}' },
-  '\\omega': { name: 'Omega', desc: 'Frecuencia angular, espacio muestral', example: '\\omega = 2\\pi f' },
-  '\\leq': { name: 'Menor o igual', desc: 'Relación de orden', example: 'x \\leq 5' },
-  '\\geq': { name: 'Mayor o igual', desc: 'Relación de orden', example: 'x \\geq 0' },
-  '\\neq': { name: 'Distinto', desc: 'Desigualdad', example: 'x \\neq 0' },
-  '\\approx': { name: 'Aproximadamente igual', desc: 'Igualdad aproximada', example: '\\pi \\approx 3.14' },
-  '\\equiv': { name: 'Equivalente/Idéntico', desc: 'Identidad, congruencia', example: 'a \\equiv b \\pmod{n}' },
-  '\\propto': { name: 'Proporcional a', desc: 'Proporcionalidad directa', example: 'y \\propto x' },
-  '\\in': { name: 'Pertenece a', desc: 'Pertenencia a conjunto', example: 'x \\in \\mathbb{R}' },
-  '\\notin': { name: 'No pertenece a', desc: 'No pertenencia a conjunto', example: 'x \\notin \\mathbb{Z}' },
-  '\\subset': { name: 'Subconjunto', desc: 'Subconjunto propio', example: 'A \\subset B' },
-  '\\subseteq': { name: 'Subconjunto o igual', desc: 'Subconjunto (puede ser igual)', example: 'A \\subseteq B' },
-  '\\cup': { name: 'Unión', desc: 'Unión de conjuntos', example: 'A \\cup B' },
-  '\\cap': { name: 'Intersección', desc: 'Intersección de conjuntos', example: 'A \\cap B' },
-  '\\emptyset': { name: 'Conjunto vacío', desc: 'Conjunto sin elementos', example: 'A \\cap B = \\emptyset' },
-  '\\forall': { name: 'Para todo', desc: 'Cuantificador universal', example: '\\forall x \\in \\mathbb{R}' },
-  '\\exists': { name: 'Existe', desc: 'Cuantificador existencial', example: '\\exists x : x^2 = 4' },
-  '\\Rightarrow': { name: 'Implica', desc: 'Implicación lógica', example: 'P \\Rightarrow Q' },
-  '\\Leftrightarrow': { name: 'Equivale', desc: 'Equivalencia lógica', example: 'P \\Leftrightarrow Q' },
-  '\\to': { name: 'Tiende a', desc: 'Límite, aplicación', example: 'f: x \\to x^2' },
-  '\\mapsto': { name: 'Mapea a', desc: 'Aplicación elemento a elemento', example: 'x \\mapsto x^2' },
-  '\\cdot': { name: 'Producto punto', desc: 'Multiplicación, producto escalar', example: '\\mathbf{a} \\cdot \\mathbf{b}' },
-  '\\times': { name: 'Producto cruz', desc: 'Producto vectorial, producto cartesiano', example: '\\mathbf{a} \\times \\mathbf{b}' },
-  '\\circ': { name: 'Composición', desc: 'Composición de funciones', example: '(f \\circ g)(x) = f(g(x))' },
-  '\\pm': { name: 'Más/menos', desc: 'Más o menos', example: 'x = \\pm 2' },
-  '\\mp': { name: 'Menos/más', desc: 'Menos o más (opuesto a ±)', example: 'x \\mp 2' },
-  '\\sqrt': { name: 'Raíz cuadrada', desc: 'Raíz cuadrada principal', example: '\\sqrt{2} \\approx 1.414' },
-  '\\sqrt[n]': { name: 'Raíz enésima', desc: 'Raíz n-ésima', example: '\\sqrt[3]{8} = 2' },
-  '\\frac': { name: 'Fracción', desc: 'Fracción', example: '\\frac{a}{b}' },
-  '\\binom': { name: 'Coeficiente binomial', desc: 'Número combinatorio', example: '\\binom{n}{k} = \\frac{n!}{k!(n-k)!}' },
-  '\\overbrace': { name: 'Llave superior', desc: 'Agrupación con etiqueta arriba', example: '\\overbrace{x+\\cdots+x}^{n\\text{ veces}}' },
-  '\\underbrace': { name: 'Llave inferior', desc: 'Agrupación con etiqueta abajo', example: '\\underbrace{x+\\cdots+x}_{n\\text{ veces}}' },
-  '\\overline': { name: 'Barra superior', desc: 'Promedio, complemento, conjugado', example: '\\overline{x} = \\frac{1}{n}\\sum x_i' },
-  '\\underline': { name: 'Subrayado', desc: 'Subrayado matemático', example: '\\underline{x}' },
-  '\\hat': { name: 'Sombrero', desc: 'Estimador, vector unitario', example: '\\hat{\\theta}, \\hat{\\mathbf{i}}' },
-  '\\tilde': { name: 'Virgulilla', desc: 'Aproximación, transformada', example: '\\tilde{f}(\\omega)' },
-  '\\vec': { name: 'Vector', desc: 'Vector', example: '\\vec{v}' },
-  '\\mathbf': { name: 'Negrita', desc: 'Vector/matriz en negrita', example: '\\mathbf{A}' },
-  '\\mathbb': { name: 'Doble golpe', desc: 'Conjuntos numéricos estándar', example: '\\mathbb{R}, \\mathbb{N}, \\mathbb{Z}' },
-  '\\mathcal': { name: 'Caligráfico', desc: 'Espacios, familias', example: '\\mathcal{F}, \\mathcal{L}' },
-  '\\mathfrak': { name: 'Gótico', desc: 'Ideales, álgebras de Lie', example: '\\mathfrak{g}, \\mathfrak{p}' },
-  '\\mathrm': { name: 'Romano', desc: 'Operadores, funciones estándar', example: '\\mathrm{sin}, \\mathrm{det}' },
-  '\\text': { name: 'Texto', desc: 'Texto normal en modo matemático', example: '\\text{si } x > 0' },
-  '\\sin': { name: 'Seno', desc: 'Función trigonométrica seno', example: '\\sin x' },
-  '\\cos': { name: 'Coseno', desc: 'Función trigonométrica coseno', example: '\\cos x' },
-  '\\tan': { name: 'Tangente', desc: 'Función trigonométrica tangente', example: '\\tan x' },
-  '\\cot': { name: 'Cotangente', desc: 'Función trigonométrica cotangente', example: '\\cot x' },
-  '\\sec': { name: 'Secante', desc: 'Función trigonométrica secante', example: '\\sec x' },
-  '\\csc': { name: 'Cosecante', desc: 'Función trigonométrica cosecante', example: '\\csc x' },
-  '\\arcsin': { name: 'Arco seno', desc: 'Función inversa del seno', example: '\\arcsin x' },
-  '\\arccos': { name: 'Arco coseno', desc: 'Función inversa del coseno', example: '\\arccos x' },
-  '\\arctan': { name: 'Arco tangente', desc: 'Función inversa de la tangente', example: '\\arctan x' },
-  '\\sinh': { name: 'Seno hiperbólico', desc: 'Función hiperbólica', example: '\\sinh x = \\frac{e^x - e^{-x}}{2}' },
-  '\\cosh': { name: 'Coseno hiperbólico', desc: 'Función hiperbólica', example: '\\cosh x = \\frac{e^x + e^{-x}}{2}' },
-  '\\log': { name: 'Logaritmo', desc: 'Logaritmo base 10 o natural', example: '\\log x' },
-  '\\ln': { name: 'Logaritmo natural', desc: 'Logaritmo base e', example: '\\ln x' },
-  '\\exp': { name: 'Exponencial', desc: 'Función exponencial', example: '\\exp(x) = e^x' },
-  '\\limsup': { name: 'Límite superior', desc: 'Límite superior de una sucesión', example: '\\limsup a_n' },
-  '\\liminf': { name: 'Límite inferior', desc: 'Límite inferior de una sucesión', example: '\\liminf a_n' },
-  '\\max': { name: 'Máximo', desc: 'Valor máximo', example: '\\max_{x\\in A} f(x)' },
-  '\\min': { name: 'Mínimo', desc: 'Valor mínimo', example: '\\min_{x\\in A} f(x)' },
-  '\\sup': { name: 'Supremo', desc: 'Cota superior mínima', example: '\\sup A' },
-  '\\inf': { name: 'Ínfimo', desc: 'Cota inferior máxima', example: '\\inf A' },
-  '\\deg': { name: 'Grado', desc: 'Grado de polinomio, ángulo en grados', example: '\\deg P(x) = 3' },
-  '\\det': { name: 'Determinante', desc: 'Determinante de matriz', example: '\\det(A)' },
-  '\\ker': { name: 'Núcleo', desc: 'Núcleo de aplicación lineal', example: '\\ker(T)' },
-  '\\dim': { name: 'Dimensión', desc: 'Dimensión de espacio vectorial', example: '\\dim V = n' },
-  '\\rank': { name: 'Rango', desc: 'Rango de matriz', example: '\\rank(A)' },
-  '\\tr': { name: 'Traza', desc: 'Traza de matriz', example: '\\tr(A)' },
-  '\\Re': { name: 'Parte real', desc: 'Parte real de número complejo', example: '\\Re(z)' },
-  '\\Im': { name: 'Parte imaginaria', desc: 'Parte imaginaria de número complejo', example: '\\Im(z)' },
-  '\\arg': { name: 'Argumento', desc: 'Argumento de número complejo', example: '\\arg(z)' },
-  '\\|': { name: 'Norma/Valor absoluto', desc: 'Norma de vector, valor absoluto', example: '\\|\\mathbf{v}\\|' },
-  '\\langle': { name: 'Corchete angular izquierdo', desc: 'Producto interior', example: '\\langle u, v \\rangle' },
-  '\\rangle': { name: 'Corchete angular derecho', desc: 'Producto interior', example: '\\langle u, v \\rangle' }
+export const GLYPH_EXPLANATIONS = {
+  '∑': { latex: '\\sum', name: 'Sumatoria', desc: 'Suma de una sucesión de términos', example: '\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}' },
+  '∏': { latex: '\\prod', name: 'Productoria', desc: 'Producto de una sucesión de factores', example: '\\prod_{i=1}^{n} i = n!' },
+  '∫': { latex: '\\int', name: 'Integral', desc: 'Integral definida o indefinida', example: '\\int_0^1 x^2 \, dx = \\frac{1}{3}' },
+  '∮': { latex: '\\oint', name: 'Integral de contorno', desc: 'Integral sobre una curva cerrada', example: '\\oint_C \\mathbf{F} \\cdot d\\mathbf{r}' },
+  '∂': { latex: '\\partial', name: 'Derivada parcial', desc: 'Derivada respecto a una variable manteniendo otras constantes', example: '\\frac{\\partial f}{\\partial x}' },
+  '∇': { latex: '\\nabla', name: 'Nabla/Gradiente', desc: 'Vector de derivadas parciales', example: '\\nabla f' },
+  '∞': { latex: '\\infty', name: 'Infinito', desc: 'Cantidad sin límite', example: '\\int_0^{\\infty} e^{-x} \, dx = 1' },
+  'α': { latex: '\\alpha', name: 'Alfa', desc: 'Ángulo, coeficiente, nivel de significancia', example: '\\alpha = 0.05' },
+  'β': { latex: '\\beta', name: 'Beta', desc: 'Coeficiente, parámetro de distribución', example: '\\beta = 2' },
+  'γ': { latex: '\\gamma', name: 'Gamma', desc: 'Parámetro, función gamma', example: '\\gamma = 3' },
+  'δ': { latex: '\\delta', name: 'Delta', desc: 'Cambio, diferencial, delta de Dirac', example: '\\delta x = x_2 - x_1' },
+  'ϵ': { latex: '\\epsilon', name: 'Épsilon', desc: 'Número positivo arbitrariamente pequeño', example: '\\epsilon > 0' },
+  'θ': { latex: '\\theta', name: 'Theta', desc: 'Ángulo, parámetro', example: '\\theta = \\frac{\\pi}{4}' },
+  'λ': { latex: '\\lambda', name: 'Lambda', desc: 'Valor propio, parámetro de tasa', example: 'A\\mathbf{v} = \\lambda\\mathbf{v}' },
+  'μ': { latex: '\\mu', name: 'Mu', desc: 'Media, parámetro de distribución', example: '\\mu = \\frac{1}{n}' },
+  'σ': { latex: '\\sigma', name: 'Sigma', desc: 'Desviación estándar, sumatoria', example: '\\sigma^2' },
+  'π': { latex: '\\pi', name: 'Pi', desc: 'Constante 3.14159..., producto', example: '\\pi \\approx 3.14159' },
+  'ϕ': { latex: '\\phi', name: 'Phi', desc: 'Ángulo, número áureo', example: '\\phi = \\frac{1+\\sqrt{5}}{2}' },
+  'ω': { latex: '\\omega', name: 'Omega', desc: 'Frecuencia angular, espacio muestral', example: '\\omega = 2\\pi f' },
+  '≤': { latex: '\\leq', name: 'Menor o igual', desc: 'Relación de orden', example: 'x \\leq 5' },
+  '≥': { latex: '\\geq', name: 'Mayor o igual', desc: 'Relación de orden', example: 'x \\geq 0' },
+  '≠': { latex: '\\neq', name: 'Distinto', desc: 'Desigualdad', example: 'x \\neq 0' },
+  '≈': { latex: '\\approx', name: 'Aproximadamente igual', desc: 'Igualdad aproximada', example: '\\pi \\approx 3.14' },
+  '≡': { latex: '\\equiv', name: 'Equivalente/Idéntico', desc: 'Identidad, congruencia', example: 'a \\equiv b' },
+  '∝': { latex: '\\propto', name: 'Proporcional a', desc: 'Proporcionalidad directa', example: 'y \\propto x' },
+  '∈': { latex: '\\in', name: 'Pertenece a', desc: 'Pertenencia a conjunto', example: 'x \\in \\mathbb{R}' },
+  '∉': { latex: '\\notin', name: 'No pertenece a', desc: 'No pertenencia a conjunto', example: 'x \\notin \\mathbb{Z}' },
+  '⊂': { latex: '\\subset', name: 'Subconjunto propio', desc: 'Subconjunto estricto', example: 'A \\subset B' },
+  '⊆': { latex: '\\subseteq', name: 'Subconjunto', desc: 'Subconjunto (puede ser igual)', example: 'A \\subseteq B' },
+  '∪': { latex: '\\cup', name: 'Unión', desc: 'Unión de conjuntos', example: 'A \\cup B' },
+  '∩': { latex: '\\cap', name: 'Intersección', desc: 'Intersección de conjuntos', example: 'A \\cap B' },
+  '∅': { latex: '\\emptyset', name: 'Conjunto vacío', desc: 'Conjunto sin elementos', example: 'A \\cap B = \\emptyset' },
+  '∀': { latex: '\\forall', name: 'Para todo', desc: 'Cuantificador universal', example: '\\forall x \\in \\mathbb{R}' },
+  '∃': { latex: '\\exists', name: 'Existe', desc: 'Cuantificador existencial', example: '\\exists x' },
+  '⇒': { latex: '\\Rightarrow', name: 'Implica', desc: 'Implicación lógica', example: 'P \\Rightarrow Q' },
+  '⇔': { latex: '\\Leftrightarrow', name: 'Equivale', desc: 'Equivalencia lógica', example: 'P \\Leftrightarrow Q' },
+  '→': { latex: '\\to', name: 'Tiende a', desc: 'Límite, aplicación', example: 'x \\to 0' },
+  '↦': { latex: '\\mapsto', name: 'Mapea a', desc: 'Aplicación elemento a elemento', example: 'x \\mapsto x^2' },
+  '⋅': { latex: '\\cdot', name: 'Producto punto', desc: 'Multiplicación, producto escalar', example: '\\mathbf{a} \\cdot \\mathbf{b}' },
+  '×': { latex: '\\times', name: 'Producto cruz', desc: 'Producto vectorial, producto cartesiano', example: '\\mathbf{a} \\times \\mathbf{b}' },
+  '∘': { latex: '\\circ', name: 'Composición', desc: 'Composición de funciones', example: '(f \\circ g)(x)' },
+  '±': { latex: '\\pm', name: 'Más/menos', desc: 'Más o menos', example: 'x = \\pm 2' },
+  '∓': { latex: '\\mp', name: 'Menos/más', desc: 'Menos o más (opuesto a ±)', example: 'x \\mp 2' }
 };
 
 /* ==========================================================================
@@ -213,6 +165,7 @@ export class MathFormula extends HTMLElement {
   
   render() {
     const html = renderLatex(this.latex, this.displayMode);
+    this.renderedHtml = html;
     const isError = html.includes('katex-error');
     
     this.shadowRoot.innerHTML = `
@@ -352,7 +305,8 @@ export class MathFormula extends HTMLElement {
   }
   
   hasExplainableSymbols() {
-    return Object.keys(SYMBOL_EXPLANATIONS).some(sym => this.latex.includes(sym));
+    // Se basa en el HTML ya renderizado: los glifos solo aparecen si KaTeX los produjo
+    return Object.keys(GLYPH_EXPLANATIONS).some(g => (this.renderedHtml || '').includes(g));
   }
   
   setupInteractions() {
@@ -374,23 +328,22 @@ export class MathFormula extends HTMLElement {
   }
   
   handleSymbolHover(e) {
-    // Encontrar elemento KaTeX bajo el cursor
-    const target = e.target.closest('.katex');
-    if (!target) return;
+    // El glifo real es el texto del span bajo el cursor (KaTeX renderiza cada símbolo
+    // como span con su carácter: ∑, π, ≤...). Sin búsqueda de substrings.
+    const span = e.target.closest('span');
+    const text = (span?.textContent || '').trim();
     
-    // Buscar símbolos explicables en el HTML renderizado
-    const katexHtml = target.innerHTML;
-    
-    for (const [symbol, info] of Object.entries(SYMBOL_EXPLANATIONS)) {
-      // Buscar el símbolo en el HTML renderizado (simplificado)
-      if (katexHtml.includes(symbol.replace('\\', '\\\\')) || 
-          katexHtml.includes(symbol.replace('\\', ''))) {
-        this.showSymbolTooltip(e, symbol, info);
-        return;
-      }
+    if (text.length > 3) {
+      this.hideSymbolTooltip();
+      return;
     }
     
-    this.hideSymbolTooltip();
+    const info = GLYPH_EXPLANATIONS[text];
+    if (info) {
+      this.showSymbolTooltip(e, text, info);
+    } else {
+      this.hideSymbolTooltip();
+    }
   }
   
   showSymbolTooltip(e, symbol, info) {
@@ -417,7 +370,7 @@ export class MathFormula extends HTMLElement {
     
     tooltip.innerHTML = `
       <div style="font-weight: 600; color: var(--brand-primary, #22d3ee); margin-bottom: var(--space-1, 0.25rem);">
-        ${info.name} <code style="font-size: 0.9em; background: var(--color-surface); padding: 1px 4px; border-radius: 3px;">${this.escapeHtml(symbol)}</code>
+        ${info.name} <code style="font-size: 0.9em; background: var(--color-surface); padding: 1px 4px; border-radius: 3px;">${this.escapeHtml(symbol)} = ${this.escapeHtml(info.latex)}</code>
       </div>
       <div style="color: var(--color-text-muted, #94a3b8); margin-bottom: var(--space-2, 0.5rem);">${info.desc}</div>
       ${info.example ? `<math-formula latex="${this.escapeHtml(info.example)}" display></math-formula>` : ''}

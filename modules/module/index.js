@@ -73,7 +73,15 @@ export default {
     const renderSection = (name) => {
       if (section !== name) return '';
       if (name === 'overview') return this.renderOverview(moduleData, progress);
-      if (content && content[name]) return content[name];
+      if (content && content[name]) {
+        // Visitar una sección con contenido la marca como completada: así el quiz
+        // puede cerrar el módulo (completeModule) y desbloquear el siguiente.
+        // Sin esto, teoría/práctica quedaban false para siempre y m02 era inalcanzable.
+        if (name === 'theory' || name === 'practice') {
+          store.completeModuleSection(moduleId, name);
+        }
+        return content[name];
+      }
       return this.renderPlaceholder(name, moduleData);
     };
     
