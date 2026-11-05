@@ -542,7 +542,7 @@ class App {
       if (e.target.matches('input, textarea, [contenteditable]')) return;
       
       // Modificadores
-      const isMac = navigator.platform.includes('Mac');
+      const isMac = navigator.userAgent.includes('Mac'); // navigator.platform está deprecado
       const modifier = isMac ? e.metaKey : e.ctrlKey;
       
       // Ctrl/Cmd + K -> Búsqueda
@@ -641,6 +641,8 @@ class App {
     const toast = document.createElement('div');
     toast.className = `toast alert alert-${data.type || 'info'} animate-slide-right`;
     toast.setAttribute('role', 'alert');
+    // Ojo: title/message se inyectan como HTML a proposito (la ayuda de atajos usa <kbd>/<br>);
+    // shortcut: si algun dia un mensaje incluye dato de usuario, escapar antes de llamar
     toast.innerHTML = `
       <div class="flex items-start gap-3">
         <div class="flex-1">

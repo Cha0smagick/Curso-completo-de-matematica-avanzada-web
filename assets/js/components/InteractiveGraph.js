@@ -622,6 +622,8 @@ export class InteractiveGraph extends HTMLElement {
     };
     
     // Evaluar usando Function constructor (sandboxed)
+    // shortcut: compila codigo desde atributos data=; el contenido es propio/estatico,
+    // si algun dia se ingiere contenido externo, sustituir por parser propio
     try {
       const func = new Function(...Object.keys(safeMath), `return ${processedExpr};`);
       return func(...Object.values(safeMath));
