@@ -41,8 +41,6 @@ export default defineConfig({
         manualChunks: {
           'vendor-katex': ['katex'],
           'vendor-chart': ['chart.js'],
-          'vendor-d3': ['d3'],
-          'vendor-floating': ['@floating-ui/dom'],
           'vendor-idb': ['idb'],
           'core': [
             './assets/js/core/app.js',
