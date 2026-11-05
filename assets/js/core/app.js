@@ -16,11 +16,15 @@ import '../../css/animations.css';
 import '../../css/print.css';
 
 // Web Components usados en el contenido de las vistas (auto-registran al importarse).
-// Sin esto, <math-formula>/<quiz-card>/<progress-ring>/<interactive-graph> quedan vacíos.
+// Sin esto, <math-formula>/<quiz-card>/<progress-ring>/<interactive-graph>
+// <hover-tooltip>/<certificate-view>/<spaced-repetition> quedan vacíos.
 import '../components/MathFormula.js';
 import '../components/ProgressRing.js';
 import '../components/QuizCard.js';
 import '../components/InteractiveGraph.js';
+import '../components/HoverTooltip.js';
+import '../components/CertificateView.js';
+import '../components/SpacedRepetition.js';
 
 /* ==========================================================================
    CURRICULUM DATA (cargado desde JSON en build time)
