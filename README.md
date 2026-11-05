@@ -3,10 +3,12 @@
 > **Curso profesional completo de matemáticas desde cero hasta nivel universitario avanzado.**
 > Diseñado para quien "odia" las matemáticas o tiene cero experiencia. 100% interactivo, didáctico y gratuito.
 
-[![Deploy to GitHub Pages](https://github.com/tuusuario/Curso-completo-de-matematica-avanzada/actions/workflows/deploy.yml/badge.svg)](https://github.com/tuusuario/Curso-completo-de-matematica-avanzada/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/Cha0smagick/Curso-completo-de-matematica-avanzada-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/Cha0smagick/Curso-completo-de-matematica-avanzada-web/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-blue.svg)](https://web.dev/progressive-web-apps/)
 [![Accessibility](https://img.shields.io/badge/WCAG-2.1%20AA-green.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
+
+> ⚠️ **Estado actual (nov 2026):** la plataforma funciona (SPA, render LaTeX, quiz del m01, progreso local, PWA offline). El **contenido pedagógico** está completo solo en el **Módulo 1**; los 45 módulos restantes muestran "en preparación". El detalle técnico completo, hallazgos y resoluciones están en [AUDITORIA.md](AUDITORIA.md).
 
 ---
 

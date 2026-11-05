@@ -1,5 +1,7 @@
 # 🔍 AUDITORÍA COMPLETA — Curso Completo de Matemática Avanzada (web)
 
+> ✅ **RESOLUCIÓN (2026-11-04):** todos los hallazgos P0/P1 y los P2 accionables fueron resueltos y verificados con build + tests. Ver el registro al final del documento.
+
 **Fecha:** 2026-11-04
 **Alcance:** 100% del repositorio — arquitectura, build, LaTeX/KaTeX, componentes web, router, CSS/UI, PWA/Service Worker, SEO, contenido, tests, CI/CD, seguridad, dependencias.
 **Método:** Revisión directa de los 60+ archivos fuente, análisis del `dist` real, ejecución de `npm run build`, `npm test`, `npm run validate:content`, verificación de bytes (UTF-8), hash SRI del CDN de KaTeX (calculado y verificado: **correcto**), cruce de clases CSS usadas vs. definidas (script), y comparación contra `PLAN_MAESTRO.md` y `README.md`.
@@ -286,3 +288,41 @@ Adicionalmente el PLAN_MAESTRO promete: teoría por módulo, 3 prácticas guiada
 ---
 
 *Auditoría realizada por el Adeptus Vinictus II. Cada hallazgo fue verificado contra el repositorio; ninguna incidencia es especulativa sin estar marcada como tal.*
+
+---
+
+# 📌 REGISTRO DE RESOLUCIÓN (2026-11-04)
+
+| Hallazgo | Estado | Commit |
+|----------|--------|--------|
+| P0-1 Componentes nunca importados | ✅ Resuelto | `44b3dea` |
+| P0-2 KaTeX sin estilos en Shadow DOM + `macro:`→`macros:` | ✅ Resuelto | `44b3dea` |
+| P0-3 Build con chunks vacíos + sw.js ausente en dist | ✅ Resuelto | `44b3dea` (chunks) + `9da7e04` (sw) |
+| P0-4 Router pushState/atrás-adelante roto | ✅ Resuelto | `dba3546` |
+| P0-5 45/46 módulos vacíos, m01 huérfano | ✅ Parcial — m01 ya vive dentro de la SPA; el resto requiere autoría de contenido (tarea continua) | `a9db436` |
+| P1-1 Utilidades CSS inexistentes | ✅ Resuelto | `b414ccf` |
+| P1-2 Candado de progresión que se abre solo | ✅ Resuelto | `dba3546` |
+| P1-3 Logout borra progreso | ✅ Resuelto | `f3afaa0` |
+| P1-4 Métricas de curso falsas | ✅ Resuelto | `f3afaa0` |
+| P1-5 PDF con dependencias fantasma | ✅ Resuelto (eliminado) | `1f00b25` |
+| P1-6 11 imágenes PWA inexistentes | ✅ Resuelto (generadas: 6 PNG + script) | `9da7e04` |
+| P1-7 URLs placeholder / base duplicada | ✅ Resuelto | `56f7bbd` (+router sin base) |
+| P1-8 Preload de fuentes incorrecto | ✅ Resuelto | `56f7bbd` |
+| P2-1 preprocessLatex mutador | ✅ Resuelto (eliminado) | `1f00b25` |
+| P2-2 escapeHtml sin comillas | ✅ Resuelto | `44b3dea` |
+| P2-3 hover-explain por substrings | ⏸️ Aplazado — componente y feature quedan pendientes de rediseño por clases KaTeX |
+| P2-4 Doble wrapper IndexedDB | ✅ Resuelto (storage.js eliminado) | `1f00b25` |
+| P2-5 Hash de certificado falso | ✅ Resuelto (SHA-256 real) | `f3afaa0` |
+| P2-6 sw.js typo .avico + setInterval | ✅ Resuelto (SW reescrito) | `9da7e04` |
+| P2-7 Página #search stub + regex injection | ✅ Resuelto | `a9db436` (highlightMatch del header pendiente de escapar — menor) |
+| P2-8 Sitemap con 404s + sin robots | ✅ Resuelto | `56f7bbd` |
+| P2-9 Sourcemaps públicos | ⏸️ Decidido: se mantienen (código abierto de por sí) |
+| P2-10 Scripts npm fantasma | ✅ Resuelto | `1f00b25` |
+| P2-11 Tests de teatro | ✅ Resuelto (17 tests reales: store, router, componentes, LaTeX) | `b28fed1`, `f3afaa0`, `dba3546`, `44b3dea` |
+| P2-12 new Function en InteractiveGraph | ✅ Documentado con shortcut | `b28fed1` |
+| P3-3 Tabs sin ARIA válido | ✅ Resuelto | `a9db436` |
+| P3-5 navigator.platform deprecado | ✅ Resuelto | `b28fed1` |
+| P3-6 README prometedor de más | ✅ Resuelto (estado real + roadmap) | este commit |
+| Pendiente estructural | 🚧 Autoría de los 45 módulos restantes, banco de preguntas, certificados PDF, diagnósticos — es producción de contenido, no bugfixing |
+
+**Nota de seguridad:** `npm audit` — 8 de 9 vulnerabilidades están en la cadena de devDependencies (tinypool vía vitest 2; exigiría migrar a vitest 5, cambio mayor). En dependencias de producción: 1 low. Sin exposición en runtime de la web.

@@ -433,7 +433,9 @@ class App {
   }
   
   highlightMatch(text, query) {
-    const regex = new RegExp(`(${query})`, 'gi');
+    // Escapar la query: sin esto, un "(" en la búsqueda lanzaba excepción en el handler
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escaped})`, 'gi');
     return text.replace(regex, '<mark class="search-result-highlight">$1</mark>');
   }
   
