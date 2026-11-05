@@ -3,6 +3,9 @@ import { glob } from 'glob';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
+// import.meta.dirname: Node >= 20.11 (Vite 8 avisa con __dirname por su config loader nativo)
+const __dirname = import.meta.dirname;
+
 export default defineConfig({
   root: '.',
   publicDir: 'public',
@@ -11,16 +14,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: true,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: false,
-        drop_debugger: true
-      },
-      format: {
-        comments: false
-      }
-    },
+    // minify por defecto (oxc). 'terser' ya no está soportado en Vite 8/Rolldown.
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -38,15 +32,14 @@ export default defineConfig({
         )
       },
       output: {
-        manualChunks: {
-          'vendor-katex': ['katex'],
-          'vendor-chart': ['chart.js'],
-          'vendor-idb': ['idb'],
-          'core': [
-            './assets/js/core/app.js',
-            './assets/js/core/store.js',
-            './assets/js/core/router.js',
-            './assets/js/core/events.js'
+        // Rolldown: manualChunks se ignora; su API nativa es codeSplitting
+        codeSplitting: {
+          groups: [
+            { name: 'vendor-katex', test: /node_modules[\\/]katex[\\/]/ },
+            { name: 'vendor-chart', test: /node_modules[\\/](chart\.js|@kurkle)[\\/]/ },
+            { name: 'vendor-floating', test: /node_modules[\\/]@floating-ui[\\/]/ },
+            { name: 'vendor-idb', test: /node_modules[\\/]idb[\\/]/ },
+            { name: 'core', test: /assets[\\/]js[\\/]core[\\/]/ }
           ]
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -108,10 +101,5 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true
-  },
-  esbuild: {
-    target: 'es2022',
-    treeShaking: true,
-    legalComments: 'none'
   }
 });
