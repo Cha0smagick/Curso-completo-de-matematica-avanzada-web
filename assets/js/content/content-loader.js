@@ -29,7 +29,8 @@ const MODULE_CONTENT_IMPORTS = {
   'm16': () => import(new URL('../../modules/m16/content.js', import.meta.url).href),
   'm17': () => import(new URL('../../modules/m17/content.js', import.meta.url).href),
   'm18': () => import(new URL('../../modules/m18/content.js', import.meta.url).href),
-  'm19': () => import(new URL('../../modules/m19/content.js', import.meta.url).href)
+  'm19': () => import(new URL('../../modules/m19/content.js', import.meta.url).href),
+  'm20': () => import(new URL('../../modules/m20/content.js', import.meta.url).href)
 };
 
 /**
